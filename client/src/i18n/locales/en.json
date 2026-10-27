@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Home",
+    "catalog": "Catalog",
+    "b2b": "Wholesale",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchLanguage": "Ver en español",
+    "skip": "Skip to main content"
+  },
+  "footer": {
+    "tagline": "Organic single-origin cacao, crafted by hand.",
+    "rights": "All rights reserved."
+  },
+  "pages": {
+    "home": {
+      "title": "Single-origin chocolate, made with care",
+      "subtitle": "Discover artisanal bars, truffle collections and seasonal creations."
+    },
+    "catalog": {
+      "title": "Chocolate Catalog"
+    },
+    "b2b": {
+      "title": "Wholesale & Corporate Services"
+    },
+    "contact": {
+      "title": "Contact Us"
+    },
+    "notFound": {
+      "title": "Page not found",
+      "back": "Back to home"
+    }
+  },
+  "common": {
+    "comingSoon": "This section is being built by our team."
+  }
+}

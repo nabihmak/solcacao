@@ -1,0 +1,51 @@
+/* Tailwind layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global base styles */
+@layer base {
+  /* Accessibility: when the browser scrolls to a focused field, keep it clear of the
+     64px sticky navbar so it is never hidden underneath (WCAG 2.4.11 Focus Not Obscured) */
+  html {
+    scroll-padding-top: 6rem;
+    scroll-padding-bottom: 2rem;
+  }
+  body {
+    @apply bg-cream font-sans text-cocoa-900 antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-serif;
+  }
+
+  /* Accessibility: a clear keyboard focus outline on every control (WCAG 2.4.7).
+     Dark outline on light pages, light gold outline on the dark header and footer. */
+  :focus-visible {
+    outline: 3px solid theme('colors.cocoa.900');
+    outline-offset: 2px;
+  }
+  header :focus-visible,
+  footer :focus-visible,
+  .on-dark :focus-visible {
+    outline-color: theme('colors.gold.300');
+  }
+  /* Inputs already show a focus ring of their own */
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+  }
+}
+
+/* Accessibility: respect the "reduce motion" system setting (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

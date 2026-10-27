@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "catalog": "Catálogo",
+    "b2b": "Mayoristas",
+    "contact": "Contacto",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "switchLanguage": "View in English",
+    "skip": "Saltar al contenido principal"
+  },
+  "footer": {
+    "tagline": "Cacao orgánico de origen único, elaborado a mano.",
+    "rights": "Todos los derechos reservados."
+  },
+  "pages": {
+    "home": {
+      "title": "Chocolate de origen único, hecho con cuidado",
+      "subtitle": "Descubre tabletas artesanales, colecciones de trufas y creaciones de temporada."
+    },
+    "catalog": {
+      "title": "Catálogo de Chocolates"
+    },
+    "b2b": {
+      "title": "Servicios Mayoristas y Corporativos"
+    },
+    "contact": {
+      "title": "Contáctanos"
+    },
+    "notFound": {
+      "title": "Página no encontrada",
+      "back": "Volver al inicio"
+    }
+  },
+  "common": {
+    "comingSoon": "Nuestro equipo está construyendo esta sección."
+  }
+}
