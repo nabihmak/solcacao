@@ -7,6 +7,8 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "switchLanguage": "Ver en español",
+    "signIn": "Sign in",
+    "account": "My account",
     "skip": "Skip to main content"
   },
   "footer": {
@@ -33,6 +35,138 @@
     }
   },
   "common": {
-    "comingSoon": "This section is being built by our team."
+    "comingSoon": "This section is being built by our team.",
+    "loading": "Loading..."
+  },
+  "auth": {
+    "close": "Close",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your SolCacao account.",
+      "submit": "Sign in",
+      "noAccount": "New to SolCacao?",
+      "createAccount": "Create an account"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Choose the type of account that fits you.",
+      "retailTitle": "Personal account",
+      "retailText": "Shop single-origin bars, truffle collections and seasonal chocolate.",
+      "b2bTitle": "Corporate account",
+      "b2bText": "For wholesale partners, hotels and corporate events: custom molds, luxury packaging and white-label branding.",
+      "select": "Select",
+      "changeType": "Change account type",
+      "contactSection": "Contact person",
+      "companySection": "Company details",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?"
+    },
+    "fields": {
+      "name": "Full name",
+      "contactName": "Contact name",
+      "email": "Email",
+      "phone": "Phone",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "companyName": "Company name",
+      "industry": "Industry",
+      "taxId": "Tax ID",
+      "website": "Website",
+      "preferredLanguage": "Preferred language",
+      "label": "Label",
+      "street": "Street address",
+      "city": "City",
+      "state": "State / Province",
+      "postalCode": "Postal code",
+      "country": "Country",
+      "isDefault": "Use as my default address"
+    },
+    "hints": {
+      "optional": "Optional",
+      "password": "At least 8 characters, including a letter and a number.",
+      "website": "Full address, e.g. https://yourcompany.com",
+      "label": "For example: Home, Office"
+    },
+    "industries": {
+      "Wholesale": "Wholesale / Retail",
+      "Hotel": "Hotel / Hospitality",
+      "Corporate Events": "Corporate events",
+      "Other": "Other"
+    },
+    "selectIndustry": "Select an industry",
+    "errors": {
+      "required": "This field is required.",
+      "email": "Enter a valid email address.",
+      "passwordRules": "Use at least 8 characters, including a letter and a number.",
+      "passwordMatch": "Passwords do not match.",
+      "minLength": "Must be at least {min} characters.",
+      "website": "Enter a full web address starting with http:// or https://",
+      "invalidCredentials": "Invalid email or password.",
+      "emailTaken": "An account with this email already exists.",
+      "network": "Cannot reach the server. Please try again.",
+      "generic": "Something went wrong. Please try again.",
+      "checkFields": "Please check the highlighted fields.",
+      "wrongCurrentPassword": "Your current password is incorrect.",
+      "samePassword": "The new password must be different from the current one."
+    },
+    "protected": {
+      "title": "Please sign in",
+      "text": "You need to be signed in to view this page.",
+      "partnerTitle": "Corporate partners only",
+      "partnerText": "This area is available to corporate (B2B) accounts."
+    }
+  },
+  "account": {
+    "title": "My account",
+    "greeting": "Hello, {name}",
+    "retailBadge": "Personal account",
+    "b2bBadge": "Corporate partner",
+    "signOut": "Sign out",
+    "save": "Save changes",
+    "saved": "Changes saved.",
+    "cancel": "Cancel",
+    "tabs": {
+      "profile": "Profile",
+      "company": "Company",
+      "addresses": "Addresses",
+      "security": "Security"
+    },
+    "profile": {
+      "title": "Personal details",
+      "emailNote": "Your email address cannot be changed."
+    },
+    "company": {
+      "title": "Company details"
+    },
+    "addresses": {
+      "title": "Saved addresses",
+      "add": "Add address",
+      "newTitle": "New address",
+      "editTitle": "Edit address",
+      "empty": "You have no saved addresses yet.",
+      "default": "Default",
+      "makeDefault": "Set as default",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirmDelete": "Delete this address?",
+      "yesDelete": "Yes, delete",
+      "save": "Save address",
+      "added": "Address added.",
+      "updated": "Address updated.",
+      "deleted": "Address deleted."
+    },
+    "security": {
+      "title": "Change password",
+      "submit": "Update password",
+      "success": "Your password has been changed."
+    },
+    "languages": {
+      "en": "English",
+      "es": "Español"
+    }
   }
 }

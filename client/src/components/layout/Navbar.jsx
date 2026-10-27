@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '../../i18n/LanguageContext';
+import AccountButton from '../auth/AccountButton';
 
 const NAV_LINKS = [
   { path: '', key: 'nav.home' },
@@ -53,6 +54,9 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
+          {/* Student 1: sign-in / account entry point */}
+          <AccountButton onNavigate={() => setMenuOpen(false)} />
+
           <button
             type="button"
             onClick={toggleLanguage}

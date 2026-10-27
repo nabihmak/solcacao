@@ -7,6 +7,8 @@
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
     "switchLanguage": "View in English",
+    "signIn": "Iniciar sesión",
+    "account": "Mi cuenta",
     "skip": "Saltar al contenido principal"
   },
   "footer": {
@@ -33,6 +35,138 @@
     }
   },
   "common": {
-    "comingSoon": "Nuestro equipo está construyendo esta sección."
+    "comingSoon": "Nuestro equipo está construyendo esta sección.",
+    "loading": "Cargando..."
+  },
+  "auth": {
+    "close": "Cerrar",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
+    "login": {
+      "title": "Bienvenido de nuevo",
+      "subtitle": "Inicia sesión en tu cuenta SolCacao.",
+      "submit": "Iniciar sesión",
+      "noAccount": "¿Eres nuevo en SolCacao?",
+      "createAccount": "Crear una cuenta"
+    },
+    "register": {
+      "title": "Crea tu cuenta",
+      "subtitle": "Elige el tipo de cuenta que mejor se adapte a ti.",
+      "retailTitle": "Cuenta personal",
+      "retailText": "Compra tabletas de origen único, colecciones de trufas y chocolates de temporada.",
+      "b2bTitle": "Cuenta corporativa",
+      "b2bText": "Para mayoristas, hoteles y eventos corporativos: moldes personalizados, empaques de lujo y marca blanca.",
+      "select": "Elegir",
+      "changeType": "Cambiar tipo de cuenta",
+      "contactSection": "Persona de contacto",
+      "companySection": "Datos de la empresa",
+      "submit": "Crear cuenta",
+      "haveAccount": "¿Ya tienes una cuenta?"
+    },
+    "fields": {
+      "name": "Nombre completo",
+      "contactName": "Nombre de contacto",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "currentPassword": "Contraseña actual",
+      "newPassword": "Nueva contraseña",
+      "companyName": "Nombre de la empresa",
+      "industry": "Sector",
+      "taxId": "Número de identificación fiscal",
+      "website": "Sitio web",
+      "preferredLanguage": "Idioma preferido",
+      "label": "Etiqueta",
+      "street": "Dirección",
+      "city": "Ciudad",
+      "state": "Estado / Provincia",
+      "postalCode": "Código postal",
+      "country": "País",
+      "isDefault": "Usar como mi dirección predeterminada"
+    },
+    "hints": {
+      "optional": "Opcional",
+      "password": "Al menos 8 caracteres, con una letra y un número.",
+      "website": "Dirección completa, p. ej. https://tuempresa.com",
+      "label": "Por ejemplo: Casa, Oficina"
+    },
+    "industries": {
+      "Wholesale": "Mayorista / Minorista",
+      "Hotel": "Hotelería",
+      "Corporate Events": "Eventos corporativos",
+      "Other": "Otro"
+    },
+    "selectIndustry": "Selecciona un sector",
+    "errors": {
+      "required": "Este campo es obligatorio.",
+      "email": "Introduce un correo electrónico válido.",
+      "passwordRules": "Usa al menos 8 caracteres, con una letra y un número.",
+      "passwordMatch": "Las contraseñas no coinciden.",
+      "minLength": "Debe tener al menos {min} caracteres.",
+      "website": "Introduce una dirección web completa que empiece por http:// o https://",
+      "invalidCredentials": "Correo electrónico o contraseña incorrectos.",
+      "emailTaken": "Ya existe una cuenta con este correo electrónico.",
+      "network": "No se puede conectar con el servidor. Inténtalo de nuevo.",
+      "generic": "Algo salió mal. Inténtalo de nuevo.",
+      "checkFields": "Revisa los campos marcados.",
+      "wrongCurrentPassword": "Tu contraseña actual es incorrecta.",
+      "samePassword": "La nueva contraseña debe ser diferente de la actual."
+    },
+    "protected": {
+      "title": "Inicia sesión",
+      "text": "Debes iniciar sesión para ver esta página.",
+      "partnerTitle": "Solo para socios corporativos",
+      "partnerText": "Esta sección está disponible para cuentas corporativas (B2B)."
+    }
+  },
+  "account": {
+    "title": "Mi cuenta",
+    "greeting": "Hola, {name}",
+    "retailBadge": "Cuenta personal",
+    "b2bBadge": "Socio corporativo",
+    "signOut": "Cerrar sesión",
+    "save": "Guardar cambios",
+    "saved": "Cambios guardados.",
+    "cancel": "Cancelar",
+    "tabs": {
+      "profile": "Perfil",
+      "company": "Empresa",
+      "addresses": "Direcciones",
+      "security": "Seguridad"
+    },
+    "profile": {
+      "title": "Datos personales",
+      "emailNote": "Tu correo electrónico no se puede cambiar."
+    },
+    "company": {
+      "title": "Datos de la empresa"
+    },
+    "addresses": {
+      "title": "Direcciones guardadas",
+      "add": "Añadir dirección",
+      "newTitle": "Nueva dirección",
+      "editTitle": "Editar dirección",
+      "empty": "Aún no tienes direcciones guardadas.",
+      "default": "Predeterminada",
+      "makeDefault": "Usar como predeterminada",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "confirmDelete": "¿Eliminar esta dirección?",
+      "yesDelete": "Sí, eliminar",
+      "save": "Guardar dirección",
+      "added": "Dirección añadida.",
+      "updated": "Dirección actualizada.",
+      "deleted": "Dirección eliminada."
+    },
+    "security": {
+      "title": "Cambiar contraseña",
+      "submit": "Actualizar contraseña",
+      "success": "Tu contraseña ha sido cambiada."
+    },
+    "languages": {
+      "en": "English",
+      "es": "Español"
+    }
   }
 }
