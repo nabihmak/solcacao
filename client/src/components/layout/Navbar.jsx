@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { path: '/contact', key: 'nav.contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ cartCount = 0 }) {
   const { lang, t, localePath } = useLanguage();
   const location = useLocation();
   const navigate = useNavigate();
@@ -124,7 +124,7 @@ export default function Navbar() {
             </button>
 
             {/* Shopping Cart Indicator */}
-            <CartIndicator />
+            <CartIndicator  count={cartCount} />
 
             {/* English / Spanish Switch */}
             <button
