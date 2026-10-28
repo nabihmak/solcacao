@@ -13,11 +13,16 @@
     "searchPlaceholder": "Buscar chocolates...",
     "submitSearch": "Buscar",
     "signIn": "Iniciar sesión",
-    "account": "Mi cuenta"
+    "account": "Mi cuenta",
+    "mainNavigation": "Navegación principal",
+    "mobileNavigation": "Navegación móvil",
+    "navigationLinks": "Enlaces de navegación"
   },
   "footer": {
     "tagline": "Cacao orgánico de origen único, elaborado a mano.",
-    "rights": "Todos los derechos reservados."
+    "rights": "Todos los derechos reservados.",
+    "navigationLabel": "Enlaces del pie de página",
+    "quickLinks": "Enlaces rápidos"
   },
   "pages": {
     "home": {
@@ -172,5 +177,8 @@
       "en": "English",
       "es": "Español"
     }
+  },
+  "cart": {
+    "itemsLabel": "Carrito: {count} productos"
   }
 }
