@@ -10,6 +10,9 @@ import CatalogPage from './pages/CatalogPage';
 import B2BPage from './pages/B2BPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
+import RegisterPage from './pages/RegisterPage';
+import AccountPage from './pages/AccountPage';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 export default function App() {
   return (
@@ -22,6 +25,17 @@ export default function App() {
         <Route path="catalog" element={<CatalogPage />} />
         <Route path="b2b" element={<B2BPage />} />
         <Route path="contact" element={<ContactPage />} />
+
+        {/* Student 1: registration and profile management */}
+        <Route path="register" element={<RegisterPage />} />
+        <Route
+          path="account"
+          element={
+            <ProtectedRoute>
+              <AccountPage />
+            </ProtectedRoute>
+          }
+        />
 
         <Route path="*" element={<NotFoundPage />} />
       </Route>

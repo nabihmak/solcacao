@@ -4,6 +4,7 @@ import { Menu, Search } from 'lucide-react';
 import { useLanguage } from '../../i18n/LanguageContext';
 import MobileMenu from './MobileMenu';
 import CartIndicator from '../cart/CartIndicator';
+import AccountButton from '../auth/AccountButton';
 
 const NAV_LINKS = [
   { path: '', key: 'nav.home' },
@@ -122,6 +123,9 @@ export default function Navbar({ cartCount = 0 }) {
             >
               <Search size={22} />
             </button>
+
+            {/* Sign in / My account (Student 1) */}
+            <AccountButton onNavigate={closeMenu} />
 
             {/* Shopping Cart Indicator */}
             <CartIndicator  count={cartCount} />

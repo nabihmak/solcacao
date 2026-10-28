@@ -7,6 +7,7 @@ import { Navigate, Outlet, useParams } from 'react-router-dom';
 import { SUPPORTED_LANGUAGES, useLanguage } from '../../i18n/LanguageContext';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import AuthModal from '../auth/AuthModal';
 
 export default function LangLayout() {
   const { lang } = useParams();
@@ -38,6 +39,8 @@ export default function LangLayout() {
         <Outlet />
       </main>
       <Footer />
+      {/* Sign-in dialog, opened from anywhere with useAuth().openAuthModal() */}
+      <AuthModal />
     </div>
   );
 }
