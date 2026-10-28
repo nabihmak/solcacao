@@ -7,9 +7,13 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "switchLanguage": "Ver en español",
+    "skip": "Skip to main content",
+    "openSearch": "Open search",
+    "closeSearch": "Close search",
+    "searchPlaceholder": "Search chocolates...",
+    "submitSearch": "Search",
     "signIn": "Sign in",
-    "account": "My account",
-    "skip": "Skip to main content"
+    "account": "My account"
   },
   "footer": {
     "tagline": "Organic single-origin cacao, crafted by hand.",
