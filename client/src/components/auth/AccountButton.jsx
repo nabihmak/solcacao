@@ -14,7 +14,7 @@ export default function AccountButton({ onNavigate }) {
   const { t, localePath } = useLanguage();
 
   const baseClass =
-    'inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium text-cocoa-100 hover:text-gold-300';
+    'inline-flex items-center gap-2 rounded-full px-2 py-1.5 text-sm font-medium text-cocoa-100 hover:text-gold-300 sm:px-3';
 
   // While a saved session is being checked, keep the space but show nothing
   if (status === 'loading') return <span className="inline-block h-8 w-8" aria-hidden="true" />;
@@ -29,16 +29,17 @@ export default function AccountButton({ onNavigate }) {
         }}
         className={baseClass}
       >
-        <User size={18} />
-        <span>{t('nav.signIn')}</span>
+        <User size={18} aria-hidden="true" />
+        {/* Icon only on small phones; the text stays available to screen readers */}
+        <span className="sr-only sm:not-sr-only">{t('nav.signIn')}</span>
       </button>
     );
   }
 
   return (
     <Link to={localePath('/account')} onClick={onNavigate} className={baseClass} title={t('nav.account')}>
-      <User size={18} />
-      <span className="max-w-[8rem] truncate">{user.name.split(' ')[0]}</span>
+      <User size={18} aria-hidden="true" />
+      <span className="sr-only sm:not-sr-only sm:max-w-[8rem] sm:truncate">{user.name.split(' ')[0]}</span>
     </Link>
   );
 }
