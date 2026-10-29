@@ -57,7 +57,7 @@ Every page has a language prefix: `/en/...` or `/es/...`.
 | `/en/catalog/:slug` | Product details                                                       | Student 3 |
 | (any page)     | Slide-out cart, opened from the cart icon                                  | Student 3 |
 | `/en/b2b`      | Wholesale (placeholder)                                                    | Student 4 |
-| `/en/contact`  | Contact (placeholder)                                                      | Student 5 |
+| `/en/contact`  | Contact (inquiry categories, form validation, confirmation screen, feedback and chocolate sampler)                                                      | Student 5 |
 | `/en/register` | Registration: Personal or Corporate (`?type=b2b` opens the corporate form) | Student 1 |
 | `/en/account`  | My account: Profile, Company (B2B only), Addresses, Security               | Student 1 |
 | (any page)     | Sign-in dialog, opened from the "Sign in" button                           | Student 1 |
