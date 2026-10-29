@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { LanguageProvider } from './i18n/LanguageContext';
 import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -16,7 +17,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <LanguageProvider>
         <AuthProvider>
-          <App />
+          {/* Student 3: shopping cart (inside AuthProvider so it can merge the guest cart on sign-in) */}
+          <CartProvider>
+            <App />
+          </CartProvider>
         </AuthProvider>
       </LanguageProvider>
     </BrowserRouter>

@@ -7,6 +7,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import LangLayout from './components/layout/LangLayout';
 import HomePage from './pages/HomePage';
 import CatalogPage from './pages/CatalogPage';
+import ProductDetailPage from './pages/ProductDetailPage';
 import B2BPage from './pages/B2BPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -22,7 +23,9 @@ export default function App() {
 
       <Route path="/:lang" element={<LangLayout />}>
         <Route index element={<HomePage />} />
+        {/* Student 3: catalog and product pages */}
         <Route path="catalog" element={<CatalogPage />} />
+        <Route path="catalog/:slug" element={<ProductDetailPage />} />
         <Route path="b2b" element={<B2BPage />} />
         <Route path="contact" element={<ContactPage />} />
 
