@@ -344,5 +344,168 @@
     "helpText": "Explore a new flavor, share your thoughts, or tell us about something you have in mind.",
     "formTitle": "Let’s talk chocolate.",
     "formIntro": "Tell us a little about yourself and your inquiry."
+  },
+  "b2b": {
+    "hero": {
+      "eyebrow": "SolCacao for business",
+      "text": "Custom chocolate for wholesalers, luxury hotels and corporate events: your own molds, packaging designed around your brand, and white-label bars made from single-origin cacao."
+    },
+    "cta": {
+      "quote": "Request a custom quote",
+      "register": "Create a corporate account",
+      "signIn": "Partner sign in",
+      "retailNote": "You are signed in with a personal account. Custom quotes need a corporate account."
+    },
+    "services": {
+      "title": "What we make for you",
+      "intro": "Every order starts with the cacao you choose and ends with chocolate that carries your brand.",
+      "molds": {
+        "title": "Custom corporate chocolate molds",
+        "text": "Your logo or message pressed into every piece, from small tasting squares to full-size bars."
+      },
+      "packaging": {
+        "title": "Personalized luxury packaging",
+        "text": "Gift boxes, tins and wrappers designed around your brand colors, for guests, clients or teams."
+      },
+      "whiteLabel": {
+        "title": "White-label branding",
+        "text": "Single-origin bars made by SolCacao and sold under your own label, with your story on the wrapper."
+      }
+    },
+    "audience": {
+      "title": "Who we work with",
+      "wholesale": {
+        "title": "Wholesale partners",
+        "text": "Shops and distributors that stock SolCacao or their own label."
+      },
+      "hotels": {
+        "title": "Luxury hotels",
+        "text": "Turndown chocolates, welcome gifts and minibar bars."
+      },
+      "events": {
+        "title": "Corporate events",
+        "text": "Branded favors for conferences, launches and holidays."
+      }
+    },
+    "how": {
+      "title": "How a custom quote works",
+      "profile": "Choose the cacao origin, how dark it is and the chocolate style.",
+      "files": "Upload your logo vector or tech pack so we can design the mold.",
+      "packaging": "Pick the packaging, the quantity and when you need it.",
+      "review": "Check the details and send. We reply with a quote.",
+      "ready": "Ready to create chocolate with your brand on it?"
+    },
+    "quote": {
+      "title": "Request a custom quote",
+      "intro": "Four short steps. We will prepare a manufacturing quote for {company}.",
+      "back": "Back to wholesale services",
+      "history": "Your quote requests",
+      "units": "units"
+    },
+    "status": {
+      "submitted": "Submitted",
+      "in_review": "In review",
+      "quoted": "Quoted",
+      "declined": "Declined"
+    },
+    "wizard": {
+      "progressLabel": "Quote request progress",
+      "stepOf": "Step {step} of {total}",
+      "completed": "completed",
+      "steps": {
+        "profile": "Cacao profile",
+        "files": "Brand files",
+        "packaging": "Packaging",
+        "review": "Review"
+      },
+      "titles": {
+        "profile": "Choose your cacao profile",
+        "files": "Upload your brand vector or tech pack",
+        "packaging": "Design your wholesale packaging",
+        "review": "Review and send your request"
+      },
+      "intros": {
+        "profile": "Pick the origin and darkness that fit your brand.",
+        "files": "We use this file to design your custom mold and packaging.",
+        "packaging": "Tell us how the chocolate should be packed and how much you need.",
+        "review": "Check everything below. You can still go back and change any step."
+      },
+      "back": "Back",
+      "next": "Next",
+      "submit": "Send request"
+    },
+    "fields": {
+      "origin": "Cacao origin",
+      "chooseOrigin": "Choose an origin",
+      "percentage": "Cacao percentage",
+      "style": "Chocolate style",
+      "file": "Brand vector or tech pack",
+      "removeFile": "Remove {name}",
+      "packaging": "Packaging type",
+      "quantity": "Quantity (units)",
+      "deliveryDate": "Desired delivery date",
+      "packagingNotes": "Packaging notes",
+      "notes": "Anything else we should know?"
+    },
+    "hints": {
+      "percentage": "A whole number from {min} to {max}.",
+      "file": "{types} · up to {mb} MB",
+      "quantity": "Minimum order: {min} units.",
+      "packagingNotes": "For example: brand colors, ribbon, insert card text.",
+      "notes": "For example: event date, allergens, or a budget range."
+    },
+    "styles": {
+      "dark": "Dark",
+      "milk": "Milk",
+      "white": "White",
+      "creamy": "Creamy",
+      "velvet": "Velvet",
+      "mint": "Mint",
+      "custom": "Custom recipe"
+    },
+    "packaging": {
+      "giftBox": {
+        "title": "Luxury gift box",
+        "text": "Rigid box with your logo, for clients and guests."
+      },
+      "whiteLabel": {
+        "title": "White-label wrapper",
+        "text": "Bar wrapper printed with your own brand."
+      },
+      "tin": {
+        "title": "Branded tin",
+        "text": "Reusable metal tin for corporate gifts."
+      },
+      "eco": {
+        "title": "Eco kraft box",
+        "text": "Recyclable kraft board with a one-color print."
+      }
+    },
+    "review": {
+      "company": "Company",
+      "flexible": "Flexible",
+      "edit": "Edit {step}"
+    },
+    "done": {
+      "title": "Your quote request was sent",
+      "text": "Thank you. Our B2B team will review request {reference} and reply with a quote.",
+      "reference": "Reference",
+      "demoNote": "Phase 2 demo: the request is saved in this browser only. Email delivery and file storage are connected in Phase 3.",
+      "another": "Start another request"
+    },
+    "errors": {
+      "origin": "Choose a cacao origin.",
+      "percentage": "Enter a whole number from 35 to 100.",
+      "style": "Choose a chocolate style.",
+      "fileRequired": "Upload your brand vector or tech pack.",
+      "fileType": "Use a PDF, SVG, AI, EPS or PNG file.",
+      "fileSize": "The file must be {mb} MB or smaller.",
+      "packaging": "Choose a packaging type.",
+      "quantity": "Enter a whole number of at least {min} units.",
+      "date": "Choose a date after today, or leave it empty.",
+      "tooLong": "This text is too long.",
+      "checkFields": "Please check the highlighted fields.",
+      "partnerOnly": "Please sign in with a corporate account to send a quote request."
+    }
   }
 }
