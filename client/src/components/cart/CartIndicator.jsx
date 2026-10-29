@@ -1,18 +1,22 @@
+/**
+ * Student 2: Accessible, presentational shopping-cart indicator.
+ * - count is provided by the parent and never creates sample cart items.
+ * - Invalid/negative counts display as zero; badge values >99 show 99+.
+ * - Full quantity is announced via a localized status label.
+ * - Student 3 will supply actual shared cart state during integration.
+ */
 import { ShoppingBag } from 'lucide-react';
 import { useLanguage } from '../../i18n/LanguageContext';
 
 export default function CartIndicator({ count = 0 }) {
-  const { lang } = useLanguage();
+  const { t } = useLanguage();
 
   const itemCount =
     Number.isFinite(count) && count > 0
       ? Math.floor(count)
       : 0;
 
-  const cartLabel =
-    lang === 'es'
-      ? `Carrito: ${itemCount} productos`
-      : `Cart: ${itemCount} items`;
+  const cartLabel = t('cart.itemsLabel', { count: itemCount });
 
   return (
     <span
