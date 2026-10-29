@@ -309,7 +309,7 @@
     "message": "Message",
     "messageHint": "10–2000 characters",
     "consent": "I confirm that the information above is correct.",
-    "submit": "Continue →",
+    "submit": "Send",
     "reset": "Clear form",
     "saved": "Online delivery is not available yet. Your message has not been sent.",
     "storageError": "Entries are valid, but this browser blocked session storage. Nothing was sent.",

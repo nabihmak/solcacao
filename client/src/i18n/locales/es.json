@@ -309,7 +309,7 @@
     "message": "Mensaje",
     "messageHint": "10–2000 caracteres",
     "consent": "Confirmo que la información anterior es correcta.",
-    "submit": "Continuar →",
+    "submit": "Enviar",
     "reset": "Limpiar formulario",
     "saved": "El envío en línea aún no está disponible. Tu mensaje no se ha enviado.",
     "storageError": "Los datos son válidos, pero el navegador bloqueó el almacenamiento de sesión. No se envió nada.",
