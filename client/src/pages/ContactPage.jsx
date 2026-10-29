@@ -26,6 +26,7 @@ export default function ContactPage() {
           {[['sampler',Package],['feedback',MessageCircle],['faq',Sparkles]].map(([path,Icon]) => <Link key={path} to={localePath('/'+path)} className="group flex min-h-20 items-center gap-4 py-5 transition hover:pl-2 hover:text-gold-700"><Icon size={21} aria-hidden="true" /><span className="flex-1 font-medium">{tr(path)}</span><ArrowUpRight size={18} aria-hidden="true" className="transition group-hover:-translate-y-1 group-hover:translate-x-1" /></Link>)}
         </nav>
         {url && <a href={url} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex items-center gap-3 rounded-full border border-cocoa-300 px-5 py-3 font-medium transition hover:bg-white"><MessageCircle size={18} aria-hidden="true" />{tr('whatsapp')}<ArrowUpRight size={16} aria-hidden="true" /></a>}
+        {!url && <p className="mt-7 flex items-start gap-3 rounded-2xl border border-cocoa-200 bg-white px-5 py-4 text-sm leading-6 text-cocoa-700"><MessageCircle size={18} aria-hidden="true" className="mt-0.5 shrink-0" />{tr('whatsappUnavailable')}</p>}
       </aside>
       <div className="order-1 lg:order-2"><SupportForm type="contact" /></div>
     </div>
