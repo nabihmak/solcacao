@@ -1,10 +1,17 @@
+/**
+ * Student 2: Slide-out mobile navigation dialog.
+ * - Opening moves focus to Close and locks background scrolling.
+ * - Tab/Shift+Tab remain inside the drawer; Escape closes it.
+ * - Cleanup restores prior focus and body overflow (including on resize).
+ * - Uses a <div role="dialog"> rather than overriding <aside> semantics.
+ */
 import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { useLanguage } from '../../i18n/LanguageContext';
 
 export default function MobileMenu({ open, onClose, navigation }) {
-  const { lang, t, localePath } = useLanguage();
+  const { t, localePath } = useLanguage();
   const panelRef = useRef(null);
   const closeButtonRef = useRef(null);
 
@@ -74,12 +81,12 @@ export default function MobileMenu({ open, onClose, navigation }) {
           ${open ? 'opacity-100' : 'opacity-0'}`}
       />
 
-      <aside
+      <div
         ref={panelRef}
         id="mobile-navigation"
         role="dialog"
         aria-modal={open ? 'true' : undefined}
-        aria-label={lang === 'es' ? 'Navegación móvil' : 'Mobile navigation'}
+        aria-label={t('nav.mobileNavigation')}
         className={`absolute inset-y-0 right-0 flex w-80
           max-w-[85vw] flex-col overflow-y-auto
           bg-cocoa-900 px-5 py-6 text-cream shadow-xl
@@ -106,7 +113,7 @@ export default function MobileMenu({ open, onClose, navigation }) {
         </div>
 
         <nav
-          aria-label={lang === 'es' ? 'Enlaces de navegación' : 'Navigation links'}
+          aria-label={t('nav.navigationLinks')}
           className="mt-8 flex flex-col gap-2"
         >
           {navigation.map((link) => (
@@ -127,7 +134,7 @@ export default function MobileMenu({ open, onClose, navigation }) {
             </NavLink>
           ))}
         </nav>
-      </aside>
+      </div>
     </div>
   );
 }

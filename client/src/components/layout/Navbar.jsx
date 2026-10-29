@@ -1,3 +1,10 @@
+/**
+ * Student 2: Global responsive navigation for EN/ES routes.
+ * - Desktop links switch to a keyboard-operable mobile drawer below 768px.
+ * - Search submits a URL-encoded catalog query; actual product results belong to Student 3.
+ * - cartCount is supplied by the eventual shared cart state, not mocked locally.
+ * - Accessible names describe controls, including the visible ES/EN language text.
+ */
 import { useCallback, useRef, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, Search } from 'lucide-react';
@@ -25,6 +32,8 @@ export default function Navbar({ cartCount = 0 }) {
   const searchButtonRef = useRef(null);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+  // WCAG 2.5.3: visible button text must occur in the accessible name.
+  const languageCode = lang === 'en' ? 'ES' : 'EN';
 
   function toggleLanguage() {
     const nextLang = lang === 'en' ? 'es' : 'en';
@@ -65,11 +74,7 @@ export default function Navbar({ cartCount = 0 }) {
     <>
       <header className="sticky top-0 z-40 bg-cocoa-900/95 backdrop-blur">
         <nav
-          aria-label={
-            lang === 'es'
-              ? 'Navegación principal'
-              : 'Main navigation'
-          }
+          aria-label={t('nav.mainNavigation')}
           className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4"
         >
           {/* SolCacao Logo */}
@@ -128,13 +133,13 @@ export default function Navbar({ cartCount = 0 }) {
             <AccountButton onNavigate={closeMenu} />
 
             {/* Shopping Cart Indicator */}
-            <CartIndicator  count={cartCount} />
+            <CartIndicator count={cartCount} />
 
             {/* English / Spanish Switch */}
             <button
               type="button"
               onClick={toggleLanguage}
-              aria-label={t('nav.switchLanguage')}
+              aria-label={`${languageCode} - ${t('nav.switchLanguage')}`}
               className="rounded-full border border-gold-500/60
                 px-3 py-1 text-xs font-semibold uppercase
                 text-gold-400 hover:bg-gold-500
@@ -142,7 +147,7 @@ export default function Navbar({ cartCount = 0 }) {
                 focus-visible:outline
                 focus-visible:outline-2"
             >
-              {lang === 'en' ? 'ES' : 'EN'}
+              {languageCode}
             </button>
 
             {/* Mobile Hamburger Button */}
