@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, Search } from 'lucide-react';
 import { useLanguage } from '../../i18n/LanguageContext';
 import MobileMenu from './MobileMenu';
-import CartIndicator from '../cart/CartIndicator';
+import CartButton from '../cart/CartButton';
 import AccountButton from '../auth/AccountButton';
 
 const NAV_LINKS = [
@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { path: '/contact', key: 'nav.contact' },
 ];
 
-export default function Navbar({ cartCount = 0 }) {
+export default function Navbar() {
   const { lang, t, localePath } = useLanguage();
   const location = useLocation();
   const navigate = useNavigate();
@@ -127,8 +127,8 @@ export default function Navbar({ cartCount = 0 }) {
             {/* Sign in / My account (Student 1) */}
             <AccountButton onNavigate={closeMenu} />
 
-            {/* Shopping Cart Indicator */}
-            <CartIndicator  count={cartCount} />
+            {/* Shopping cart: count from the shared cart state, opens the cart drawer (Student 3) */}
+            <CartButton onOpen={closeMenu} />
 
             {/* English / Spanish Switch */}
             <button

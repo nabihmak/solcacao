@@ -8,6 +8,7 @@ import { SUPPORTED_LANGUAGES, useLanguage } from '../../i18n/LanguageContext';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import AuthModal from '../auth/AuthModal';
+import CartDrawer from '../cart/CartDrawer';
 
 export default function LangLayout() {
   const { lang } = useParams();
@@ -41,6 +42,8 @@ export default function LangLayout() {
       <Footer />
       {/* Sign-in dialog, opened from anywhere with useAuth().openAuthModal() */}
       <AuthModal />
+      {/* Slide-out cart, opened with useCart().openCart() (Student 3) */}
+      <CartDrawer />
     </div>
   );
 }

@@ -53,7 +53,9 @@ Every page has a language prefix: `/en/...` or `/es/...`.
 | Path           | Page                                                                       | Owner     |
 | -------------- | -------------------------------------------------------------------------- | --------- |
 | `/en`          | Home (placeholder)                                                         | Student 4 |
-| `/en/catalog`  | Catalog (placeholder)                                                      | Student 3 |
+| `/en/catalog`  | Catalog: search, filters (origin, cacao %, price, type), sort, pages       | Student 3 |
+| `/en/catalog/:slug` | Product details                                                       | Student 3 |
+| (any page)     | Slide-out cart, opened from the cart icon                                  | Student 3 |
 | `/en/b2b`      | Wholesale (placeholder)                                                    | Student 4 |
 | `/en/contact`  | Contact (placeholder)                                                      | Student 5 |
 | `/en/register` | Registration: Personal or Corporate (`?type=b2b` opens the corporate form) | Student 1 |
@@ -68,15 +70,18 @@ final versions.
 ```
 client/src/
 ├── components/
+│   ├── catalog/    ProductCard, ProductArt, FilterSidebar, RangeSlider, Pagination, StockStatus
+│   ├── cart/       CartButton, CartDrawer, CartLineItem, QuantityStepper, CartIndicator
 │   ├── auth/       AuthModal, LoginForm, RegisterForm, AccountTypeSelector, AccountButton, ProtectedRoute
 │   ├── layout/     LangLayout, Navbar, Footer, PagePlaceholder (shared shell)
 │   ├── profile/    ProfileDetailsForm, CompanyDetailsForm, AddressBook, AddressForm, ChangePasswordForm
 │   └── ui/         FormField, PasswordField, Button, Alert
-├── context/        AuthContext (signed-in user, sign in / out, sign-in dialog)
+├── context/        AuthContext (signed-in user, sign in / out, sign-in dialog), CartContext + cartReducer
+├── data/           products.js (Phase 2 catalog + inventory seed)
 ├── hooks/          usePageTitle
 ├── i18n/           LanguageContext + locales/en.json, locales/es.json
 ├── pages/          One file per page
-├── services/       mockApi (Phase 2 data), authService, userService, tokenStorage
+├── services/       mockApi + catalogMockApi (Phase 2 data), authService, userService, productService, cartService, tokenStorage
 └── utils/          validation, apiErrors, focus, constants
 ```
 
