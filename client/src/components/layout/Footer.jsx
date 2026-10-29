@@ -12,6 +12,7 @@ const FOOTER_LINKS = [
   { path: '/catalog', key: 'nav.catalog' },
   { path: '/b2b', key: 'nav.b2b' },
   { path: '/contact', key: 'nav.contact' },
+  ...['sampler', 'feedback', 'about', 'faq'].map(path => ({ path: '/' + path, key: 'support.' + path })),
 ];
 
 export default function Footer() {

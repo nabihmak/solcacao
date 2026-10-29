@@ -10,6 +10,8 @@ import CatalogPage from './pages/CatalogPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import B2BPage from './pages/B2BPage';
 import ContactPage from './pages/ContactPage';
+import SupportPage from './pages/SupportPage';
+import InfoPage from './pages/InfoPage';
 import NotFoundPage from './pages/NotFoundPage';
 import RegisterPage from './pages/RegisterPage';
 import AccountPage from './pages/AccountPage';
@@ -28,6 +30,10 @@ export default function App() {
         <Route path="catalog/:slug" element={<ProductDetailPage />} />
         <Route path="b2b" element={<B2BPage />} />
         <Route path="contact" element={<ContactPage />} />
+        <Route path="feedback" element={<SupportPage type="feedback" />} />
+        <Route path="sampler" element={<SupportPage type="sampler" />} />
+        <Route path="about" element={<InfoPage type="about" />} />
+        <Route path="faq" element={<InfoPage type="faq" />} />
 
         {/* Student 1: registration and profile management */}
         <Route path="register" element={<RegisterPage />} />
