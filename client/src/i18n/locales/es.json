@@ -309,7 +309,7 @@
     "message": "Mensaje",
     "messageHint": "10–2000 caracteres",
     "consent": "Confirmo que la información anterior es correcta.",
-    "submit": "Continuar →",
+    "submit": "Enviar",
     "reset": "Limpiar formulario",
     "saved": "El envío en línea aún no está disponible. Tu mensaje no se ha enviado.",
     "storageError": "Los datos son válidos, pero el navegador bloqueó el almacenamiento de sesión. No se envió nada.",
@@ -344,5 +344,168 @@
     "helpText": "Explora un nuevo sabor, comparte tu opinión o cuéntanos tu próxima idea.",
     "formTitle": "Hablemos de chocolate.",
     "formIntro": "Cuéntanos un poco sobre ti y tu consulta."
+  },
+  "b2b": {
+    "hero": {
+      "eyebrow": "SolCacao para empresas",
+      "text": "Chocolate a medida para mayoristas, hoteles de lujo y eventos corporativos: moldes propios, empaques diseñados para tu marca y tabletas de marca blanca elaboradas con cacao de origen único."
+    },
+    "cta": {
+      "quote": "Solicitar una cotización",
+      "register": "Crear una cuenta corporativa",
+      "signIn": "Acceso para socios",
+      "retailNote": "Has iniciado sesión con una cuenta personal. Las cotizaciones requieren una cuenta corporativa."
+    },
+    "services": {
+      "title": "Lo que creamos para ti",
+      "intro": "Cada pedido empieza con el cacao que eliges y termina en un chocolate con tu marca.",
+      "molds": {
+        "title": "Moldes corporativos personalizados",
+        "text": "Tu logotipo o mensaje en cada pieza, desde pequeños cuadrados de degustación hasta tabletas completas."
+      },
+      "packaging": {
+        "title": "Empaques de lujo personalizados",
+        "text": "Cajas de regalo, latas y envolturas con los colores de tu marca, para huéspedes, clientes o equipos."
+      },
+      "whiteLabel": {
+        "title": "Marca blanca",
+        "text": "Tabletas de origen único elaboradas por SolCacao y vendidas con tu propia marca y tu historia en la envoltura."
+      }
+    },
+    "audience": {
+      "title": "Con quién trabajamos",
+      "wholesale": {
+        "title": "Mayoristas",
+        "text": "Tiendas y distribuidores con SolCacao o con su propia marca."
+      },
+      "hotels": {
+        "title": "Hoteles de lujo",
+        "text": "Chocolates de cortesía, regalos de bienvenida y tabletas para el minibar."
+      },
+      "events": {
+        "title": "Eventos corporativos",
+        "text": "Detalles con tu marca para congresos, lanzamientos y fiestas."
+      }
+    },
+    "how": {
+      "title": "Cómo funciona una cotización",
+      "profile": "Elige el origen del cacao, su intensidad y el estilo de chocolate.",
+      "files": "Sube el vector de tu logotipo o la ficha técnica para diseñar el molde.",
+      "packaging": "Elige el empaque, la cantidad y la fecha en que lo necesitas.",
+      "review": "Revisa los datos y envía. Te responderemos con una cotización.",
+      "ready": "¿Listo para crear chocolate con tu marca?"
+    },
+    "quote": {
+      "title": "Solicitar una cotización",
+      "intro": "Cuatro pasos breves. Prepararemos una cotización de fabricación para {company}.",
+      "back": "Volver a servicios mayoristas",
+      "history": "Tus solicitudes de cotización",
+      "units": "unidades"
+    },
+    "status": {
+      "submitted": "Enviada",
+      "in_review": "En revisión",
+      "quoted": "Cotizada",
+      "declined": "Rechazada"
+    },
+    "wizard": {
+      "progressLabel": "Progreso de la solicitud",
+      "stepOf": "Paso {step} de {total}",
+      "completed": "completado",
+      "steps": {
+        "profile": "Perfil de cacao",
+        "files": "Archivos de marca",
+        "packaging": "Empaque",
+        "review": "Revisión"
+      },
+      "titles": {
+        "profile": "Elige tu perfil de cacao",
+        "files": "Sube el vector de tu marca o la ficha técnica",
+        "packaging": "Diseña tu empaque mayorista",
+        "review": "Revisa y envía tu solicitud"
+      },
+      "intros": {
+        "profile": "Elige el origen y la intensidad que mejor representan a tu marca.",
+        "files": "Usamos este archivo para diseñar tu molde y tu empaque.",
+        "packaging": "Cuéntanos cómo empacar el chocolate y cuánto necesitas.",
+        "review": "Revisa todo. Todavía puedes volver y cambiar cualquier paso."
+      },
+      "back": "Atrás",
+      "next": "Siguiente",
+      "submit": "Enviar solicitud"
+    },
+    "fields": {
+      "origin": "Origen del cacao",
+      "chooseOrigin": "Elige un origen",
+      "percentage": "Porcentaje de cacao",
+      "style": "Estilo de chocolate",
+      "file": "Vector de marca o ficha técnica",
+      "removeFile": "Quitar {name}",
+      "packaging": "Tipo de empaque",
+      "quantity": "Cantidad (unidades)",
+      "deliveryDate": "Fecha de entrega deseada",
+      "packagingNotes": "Notas sobre el empaque",
+      "notes": "¿Algo más que debamos saber?"
+    },
+    "hints": {
+      "percentage": "Un número entero de {min} a {max}.",
+      "file": "{types} · hasta {mb} MB",
+      "quantity": "Pedido mínimo: {min} unidades.",
+      "packagingNotes": "Por ejemplo: colores de marca, cinta, texto de la tarjeta.",
+      "notes": "Por ejemplo: fecha del evento, alérgenos o un rango de presupuesto."
+    },
+    "styles": {
+      "dark": "Oscuro",
+      "milk": "Con leche",
+      "white": "Blanco",
+      "creamy": "Cremoso",
+      "velvet": "Aterciopelado",
+      "mint": "Menta",
+      "custom": "Receta propia"
+    },
+    "packaging": {
+      "giftBox": {
+        "title": "Caja de regalo de lujo",
+        "text": "Caja rígida con tu logotipo, para clientes y huéspedes."
+      },
+      "whiteLabel": {
+        "title": "Envoltura de marca blanca",
+        "text": "Envoltura de tableta impresa con tu marca."
+      },
+      "tin": {
+        "title": "Lata con tu marca",
+        "text": "Lata metálica reutilizable para regalos corporativos."
+      },
+      "eco": {
+        "title": "Caja ecológica kraft",
+        "text": "Cartón kraft reciclable con impresión a una tinta."
+      }
+    },
+    "review": {
+      "company": "Empresa",
+      "flexible": "Flexible",
+      "edit": "Editar {step}"
+    },
+    "done": {
+      "title": "Tu solicitud de cotización fue enviada",
+      "text": "Gracias. Nuestro equipo B2B revisará la solicitud {reference} y te responderá con una cotización.",
+      "reference": "Referencia",
+      "demoNote": "Demostración de la Fase 2: la solicitud se guarda solo en este navegador. El envío por correo y el almacenamiento de archivos se conectan en la Fase 3.",
+      "another": "Crear otra solicitud"
+    },
+    "errors": {
+      "origin": "Elige un origen de cacao.",
+      "percentage": "Introduce un número entero de 35 a 100.",
+      "style": "Elige un estilo de chocolate.",
+      "fileRequired": "Sube el vector de tu marca o la ficha técnica.",
+      "fileType": "Usa un archivo PDF, SVG, AI, EPS o PNG.",
+      "fileSize": "El archivo debe pesar {mb} MB o menos.",
+      "packaging": "Elige un tipo de empaque.",
+      "quantity": "Introduce un número entero de al menos {min} unidades.",
+      "date": "Elige una fecha posterior a hoy o deja el campo vacío.",
+      "tooLong": "Este texto es demasiado largo.",
+      "checkFields": "Revisa los campos marcados.",
+      "partnerOnly": "Inicia sesión con una cuenta corporativa para enviar una solicitud."
+    }
   }
 }
