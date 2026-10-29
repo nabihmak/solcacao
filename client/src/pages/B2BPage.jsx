@@ -4,5 +4,10 @@
 import PagePlaceholder from '../components/layout/PagePlaceholder';
 
 export default function B2BPage() {
-  return <PagePlaceholder titleKey="pages.b2b.title" />;
+  return (    <div>
+      {/* Link to public/about.html */}
+      <a href="/B2B/B2B.html" target="_blank" rel="noopener noreferrer">
+        Link: Go To B2B Services
+      </a>
+    </div>);
 }
