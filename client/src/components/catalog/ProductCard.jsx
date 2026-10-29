@@ -40,14 +40,14 @@ export default function ProductCard({ product }) {
           )}
         </div>
 
-        <h3 className="mt-3 text-lg font-semibold leading-snug text-cocoa-900">
+        <h2 className="mt-3 text-lg font-semibold leading-snug text-cocoa-900">
           <Link
             to={href}
             className="rounded-sm hover:text-cocoa-600 hover:underline hover:underline-offset-4"
           >
             {name}
           </Link>
-        </h3>
+        </h2>
         <p className="mt-1 text-sm text-cocoa-600">
           {product.origin}, {product.region}
         </p>
