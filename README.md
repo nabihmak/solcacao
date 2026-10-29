@@ -1,3 +1,7 @@
+# Student 5 Phase 2 update
+
+Start with [Student 5 setup and GitHub guide](docs/STUDENT5_PHASE2.md). This update adds the Student 5 frontend demo and preserves the original project setup below.
+
 # SolCacao Artisanal Chocolate Platform
 
 A bilingual (English / Spanish) web application for SolCacao: direct-to-consumer chocolate

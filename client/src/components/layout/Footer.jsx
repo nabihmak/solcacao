@@ -1,9 +1,3 @@
-/**
- * Student 2: Site-wide responsive footer for localized EN/ES routes.
- * - Navigation destinations use localePath to preserve the current language.
- * - Navigation landmark and section heading use translation keys.
- * - Copyright appears only once; the year updates automatically.
- */
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../i18n/LanguageContext';
 
@@ -12,10 +6,11 @@ const FOOTER_LINKS = [
   { path: '/catalog', key: 'nav.catalog' },
   { path: '/b2b', key: 'nav.b2b' },
   { path: '/contact', key: 'nav.contact' },
+  ...['sampler', 'feedback', 'about', 'faq'].map(path => ({ path: '/' + path, key: 'support.' + path })),
 ];
 
 export default function Footer() {
-  const { t, localePath } = useLanguage();
+  const { lang, t, localePath } = useLanguage();
   const year = new Date().getFullYear();
 
   return (
@@ -40,10 +35,14 @@ export default function Footer() {
 
         {/* Quick Navigation */}
         <nav
-          aria-label={t('footer.navigationLabel')}
+          aria-label={
+            lang === 'es'
+              ? 'Enlaces del pie de página'
+              : 'Footer navigation'
+          }
         >
           <h2 className="mb-4 font-semibold text-cream">
-            {t('footer.quickLinks')}
+            {lang === 'es' ? 'Enlaces rápidos' : 'Quick Links'}
           </h2>
 
           <ul className="space-y-3">
@@ -75,6 +74,11 @@ export default function Footer() {
         </div>
       </div>
 
+      <div className="border-t border-cocoa-700">
+        <div className="mx-auto max-w-6xl px-5 py-4 text-center text-xs text-cocoa-200">
+          SolCacao © {year}
+        </div>
+      </div>
     </footer>
   );
 }
