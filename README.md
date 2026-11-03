@@ -46,6 +46,18 @@ These are created automatically the first time the app opens:
 New accounts you register are saved in your browser only. To start from scratch, clear the
 site data for `localhost:5173` in your browser.
 
+## Deployment
+
+Live site: [URL]
+
+**UTA cloud (cPanel)**
+
+1. `cd client && npm install && npm run build`
+2. In cPanel File Manager, upload the contents of `client/dist/` into `public_html/`
+   (turn on *Show Hidden Files* to see `.htaccess`).
+3. `client/public/.htaccess` is copied into the build and sends every page route to
+   `index.html`, so links like `/en/catalog` work after a refresh.
+
 ## Pages
 
 Every page has a language prefix: `/en/...` or `/es/...`.
