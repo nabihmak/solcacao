@@ -17,6 +17,13 @@ Phase 3 only the service files change to `fetch()` calls. No component needs to 
 ## Requirements
 
 - **Node.js 20.19 or newer** (Node 22 LTS recommended), which includes npm
+## Run the server
+
+```bash
+cd backend
+npm install
+node server.js        # opens on http://localhost:3001
+```
 
 ## Run the app
 
