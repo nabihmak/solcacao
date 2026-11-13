@@ -12,7 +12,10 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../i18n/LanguageContext';
 import usePageTitle from '../hooks/usePageTitle';
 import QuoteWizard from '../components/b2b/QuoteWizard';
-import { fetchMyQuotes } from '../services/b2bService';
+import { getMe } from '../services/mockApi'
+import { tokenStorage } from '../services/tokenStorage';
+import axios from 'axios'
+
 
 export default function B2BQuotePage() {
   const { user } = useAuth();
@@ -21,10 +24,25 @@ export default function B2BQuotePage() {
 
   const [requests, setRequests] = useState([]);
 
-  const loadRequests = useCallback(() => {
-    fetchMyQuotes()
-      .then(({ requests: list }) => setRequests(list))
-      .catch(() => setRequests([])); // the list is extra information; the wizard still works
+  const loadRequests = useCallback(async () => {
+    try {
+      const { user } = await getMe(tokenStorage.get());
+
+      const response = await axios.get(
+        'http://localhost:3001/api/b2b/quote',
+        {
+          params: {
+            user: JSON.stringify(user)
+          }
+        }
+      );
+
+      setRequests(response.data);
+
+    } catch (error) {
+      console.error("Error loading quotes:", error);
+      setRequests([]);
+    }
   }, []);
 
   useEffect(() => {

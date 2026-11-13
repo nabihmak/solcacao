@@ -23,7 +23,9 @@ import Button from '../ui/Button';
 import Alert from '../ui/Alert';
 import OptionCards from './OptionCards';
 import WizardProgress from './WizardProgress';
-import { submitQuoteRequest } from '../../services/b2bService';
+import { getMe } from '../../services/mockApi'
+import { tokenStorage } from '../../services/tokenStorage';
+import axios from 'axios'
 import { focusFirstInvalid } from '../../utils/focus';
 import {
   CHOCOLATE_STYLES,
@@ -118,8 +120,13 @@ export default function QuoteWizard({ onSubmitted }) {
     }
     setFormError('');
     setSubmitting(true);
+    const formData = new FormData();
+    const { user } = await getMe(tokenStorage.get());
+    formData.append("image", file);
+    formData.append("caption", JSON.stringify(values));
+    formData.append("user", JSON.stringify(user))
     try {
-      const { request } = await submitQuoteRequest(values, file);
+      const { request } = await axios.post("http://localhost:3001/api/b2b/quote", formData, { headers: {'Content-Type': 'multipart/form-data'}});
       setResult(request);
       onSubmitted?.(request);
     } catch (error) {
