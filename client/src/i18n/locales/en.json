@@ -343,7 +343,9 @@
     "helpTitle": "How can we help?",
     "helpText": "Explore a new flavor, share your thoughts, or tell us about something you have in mind.",
     "formTitle": "Let’s talk chocolate.",
-    "formIntro": "Tell us a little about yourself and your inquiry."
+    "formIntro": "Tell us a little about yourself and your inquiry.",
+    "sending": "Sending…",
+    "requestError": "Submission failed. Please try again."
   },
   "b2b": {
     "hero": {
