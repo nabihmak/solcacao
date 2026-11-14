@@ -343,7 +343,9 @@
     "helpTitle": "¿Cómo podemos ayudarte?",
     "helpText": "Explora un nuevo sabor, comparte tu opinión o cuéntanos tu próxima idea.",
     "formTitle": "Hablemos de chocolate.",
-    "formIntro": "Cuéntanos un poco sobre ti y tu consulta."
+    "formIntro": "Cuéntanos un poco sobre ti y tu consulta.",
+    "sending": "Enviando…",
+    "requestError": "No se pudo enviar. Inténtalo de nuevo."
   },
   "b2b": {
     "hero": {

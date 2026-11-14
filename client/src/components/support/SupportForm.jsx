@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { submitStudent5 } from '../../services/student5Api';
 import { useLanguage } from '../../i18n/LanguageContext';
-import { FLAVORS, saveDemoSubmission, validateSupport } from '../../utils/support';
+import { FLAVORS, validateSupport } from '../../utils/support';
 
 const inputClass = 'mt-2 block w-full rounded-xl border border-cocoa-200 bg-cocoa-50 px-4 py-3 transition hover:border-cocoa-400 text-cocoa-950 focus:ring-2 focus:ring-cocoa-700';
 export default function SupportForm({ type }) {
@@ -16,7 +17,7 @@ export default function SupportForm({ type }) {
     return <div><label htmlFor={id} className="font-medium">{tr(label)}</label><input {...props} id={id} name={name} value={data[name]} onChange={e => update(name, e.target.value)} className={inputClass} required aria-invalid={!!errors[name]} aria-describedby={errors[name] ? `${id}-error` : undefined} />{error(name)}</div>;
   }
   function error(name) { return errors[name] && <p id={`${type}-${name}-error`} className="mt-2 text-sm font-medium text-red-800">{tr(errors[name])}</p>; }
-  function submit(event) {
+  async function submit(event) {
     event.preventDefault();
     const next = validateSupport(data, type);
     setErrors(next); setStatus('');
@@ -24,10 +25,11 @@ export default function SupportForm({ type }) {
       requestAnimationFrame(() => document.getElementById(`${type}-${Object.keys(next)[0]}`)?.focus());
       return;
     }
-    try { saveDemoSubmission(data, type); setStatus('saved'); }
-    catch { setStatus('storageError'); }
+    setStatus('sending');
+    try { await submitStudent5(data, type); setStatus('saved'); }
+    catch (err) { setStatus('requestError'); }
   }
-  if (status === 'saved') return <section role="status" aria-live="polite" className="rounded-3xl border border-cocoa-200 bg-white p-8 text-center shadow-lg sm:p-12"><div aria-hidden="true" className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-4xl text-green-800">✓</div><p className="text-sm font-semibold uppercase tracking-widest text-gold-700">SolCacao</p><h2 className="mt-4 text-3xl">{tr('received')}</h2><p className="mt-4 leading-7">{tr('receivedDetail')}</p><p className="mt-6 rounded-xl bg-cocoa-50 p-4 text-sm leading-6">{tr('saved')}</p><button type="button" onClick={() => { setData(initial); setErrors({}); setStatus(''); }} className="mt-8 rounded-xl bg-cocoa-900 px-6 py-3 font-semibold text-cream">{tr('another')}</button></section>;
+  if (status === 'saved') return <section role="status" aria-live="polite" className="rounded-3xl border border-cocoa-200 bg-white p-8 text-center shadow-lg sm:p-12"><div aria-hidden="true" className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-4xl text-green-800">✓</div><p className="text-sm font-semibold uppercase tracking-widest text-gold-700">SolCacao</p><h2 className="mt-4 text-3xl">{tr('received')}</h2><p className="mt-4 leading-7">{tr('receivedDetail')}</p><button type="button" onClick={() => { setData(initial); setErrors({}); setStatus(''); }} className="mt-8 rounded-xl bg-cocoa-900 px-6 py-3 font-semibold text-cream">{tr('another')}</button></section>;
   return <form noValidate onSubmit={submit} className="space-y-6 rounded-2xl border border-cocoa-200 bg-white p-6 shadow-xl sm:p-10">
     <div><h2 className="text-3xl">{tr(type === 'contact' ? 'formTitle' : type)}</h2><p className="mt-2 text-sm text-cocoa-700">{tr('formIntro')}</p></div>
 
@@ -42,7 +44,7 @@ export default function SupportForm({ type }) {
     </>}
     <div><label htmlFor={`${type}-message`} className="font-medium">{tr('message')}</label><textarea id={`${type}-message`} rows={5} maxLength={2000} value={data.message} onChange={e => update('message', e.target.value)} className={inputClass} required aria-invalid={!!errors.message} aria-describedby={`${type}-message-hint${errors.message ? ` ${type}-message-error` : ''}`} /><p id={`${type}-message-hint`} className="mt-1 text-sm">{tr('messageHint')} · {data.message.length}/2000</p>{error('message')}</div>
     <div><label className="flex items-start gap-3"><input id={`${type}-consent`} type="checkbox" checked={data.consent} onChange={e => update('consent', e.target.checked)} required aria-invalid={!!errors.consent} aria-describedby={errors.consent ? `${type}-consent-error` : undefined} className="mt-1 h-5 w-5 shrink-0 accent-cocoa-800" /><span>{tr('consent')}</span></label>{error('consent')}</div>
-    <div className="flex flex-wrap gap-3"><button type="submit" className="min-h-12 rounded-full bg-cocoa-900 px-8 py-3 font-semibold text-cream transition hover:bg-cocoa-700 hover:shadow-lg">{tr('submit')}</button><button type="button" onClick={() => { setData(initial); setErrors({}); setStatus(''); }} className="min-h-12 rounded-full px-6 py-3 text-cocoa-700 transition hover:bg-cocoa-50">{tr('reset')}</button></div>
-    <p role="status" aria-live="polite" className="font-medium">{status ? tr(status) : ''}</p>
+    <div className="flex flex-wrap gap-3"><button type="submit" disabled={status === 'sending'} className="min-h-12 rounded-full bg-cocoa-900 px-8 py-3 font-semibold text-cream transition hover:bg-cocoa-700 hover:shadow-lg">{tr('submit')}</button><button type="button" onClick={() => { setData(initial); setErrors({}); setStatus(''); }} className="min-h-12 rounded-full px-6 py-3 text-cocoa-700 transition hover:bg-cocoa-50">{tr('reset')}</button></div>
+    <p role="status" aria-live="polite" className="font-medium">{status === 'sending' ? (t('support.sending') === 'support.sending' ? 'Sending…' : tr('sending')) : status === 'requestError' ? (t('support.requestError') === 'support.requestError' ? 'Submission failed. Please check the server and try again.' : tr('requestError')) : status ? tr(status) : ''}</p>
   </form>;
 }

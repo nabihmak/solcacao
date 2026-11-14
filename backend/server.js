@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { MongoClient } from 'mongodb';
 import { registerStudent2Routes } from './routes/student2.js';
+import { makeStudent5Router, student5Collection, student5Mail } from './routes/student5.js';
 
 const app = express()
 dotenv.config();
@@ -30,6 +31,11 @@ const s3 = new S3Client({
 });
 
 app.use(cors())
+app.use(express.json({ limit: '32kb' }));
+app.use('/api/student5', makeStudent5Router({
+  getCollection: student5Collection,
+  sendNotification: process.env.SMTP_HOST ? student5Mail : undefined
+}));
 // Student 2 - Localization API and static assets
 registerStudent2Routes(app);
 
