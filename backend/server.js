@@ -4,6 +4,7 @@ import multer from 'multer'
 import dotenv from 'dotenv';
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { MongoClient } from 'mongodb';
+import { registerStudent2Routes } from './routes/student2.js';
 
 const app = express()
 dotenv.config();
@@ -29,6 +30,8 @@ const s3 = new S3Client({
 });
 
 app.use(cors())
+// Student 2 - Localization API and static assets
+registerStudent2Routes(app);
 
 export async function connectToMongoDB() {
   try {
