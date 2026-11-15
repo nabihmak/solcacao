@@ -12,8 +12,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../i18n/LanguageContext';
 import usePageTitle from '../hooks/usePageTitle';
 import QuoteWizard from '../components/b2b/QuoteWizard';
-import { getMe } from '../services/mockApi'
-import { tokenStorage } from '../services/tokenStorage';
+import { authHeader } from '../services/apiClient';
 import axios from 'axios'
 
 
@@ -26,15 +25,10 @@ export default function B2BQuotePage() {
 
   const loadRequests = useCallback(async () => {
     try {
-      const { user } = await getMe(tokenStorage.get());
-
+      // Only this partner's quotes come back: the server reads the sign-in token
       const response = await axios.get(
         'http://localhost:3001/api/b2b/quote',
-        {
-          params: {
-            user: JSON.stringify(user)
-          }
-        }
+        { headers: authHeader() }
       );
 
       setRequests(response.data);
