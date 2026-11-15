@@ -12,7 +12,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../i18n/LanguageContext';
 import usePageTitle from '../hooks/usePageTitle';
 import QuoteWizard from '../components/b2b/QuoteWizard';
-import { authHeader } from '../services/apiClient';
+import { apiUrl, authHeader } from '../services/apiClient';
 import axios from 'axios'
 
 
@@ -27,7 +27,7 @@ export default function B2BQuotePage() {
     try {
       // Only this partner's quotes come back: the server reads the sign-in token
       const response = await axios.get(
-        'http://localhost:3001/api/b2b/quote',
+        apiUrl('/api/b2b/quote'),
         { headers: authHeader() }
       );
 

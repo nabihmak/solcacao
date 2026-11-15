@@ -23,7 +23,7 @@ import Button from '../ui/Button';
 import Alert from '../ui/Alert';
 import OptionCards from './OptionCards';
 import WizardProgress from './WizardProgress';
-import { authHeader } from '../../services/apiClient';
+import { apiUrl, authHeader } from '../../services/apiClient';
 import axios from 'axios'
 import { focusFirstInvalid } from '../../utils/focus';
 import {
@@ -124,7 +124,7 @@ export default function QuoteWizard({ onSubmitted }) {
     formData.append("caption", JSON.stringify(values));
     try {
       // The server finds the partner from the sign-in token
-      const { data } = await axios.post("http://localhost:3001/api/b2b/quote", formData, { headers: {'Content-Type': 'multipart/form-data', ...authHeader()}});
+      const { data } = await axios.post(apiUrl("/api/b2b/quote"), formData, { headers: {'Content-Type': 'multipart/form-data', ...authHeader()}});
       const { request } = data;
       setResult(request);
       onSubmitted?.(request);

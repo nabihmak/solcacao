@@ -14,6 +14,9 @@ import { tokenStorage } from './tokenStorage';
 
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
 
+// Full address of an API path, for calls made with other tools (e.g. axios file uploads)
+export const apiUrl = (path) => API_BASE + path;
+
 function apiError(status, message, errors = []) {
   const error = new Error(message);
   error.status = status;
