@@ -8,7 +8,7 @@
  */
 import 'dotenv/config';
 import bcrypt from 'bcryptjs';
-import { closeDb } from '../config/db.js';
+import { connectMongoose, disconnectMongoose } from '../config/mongoose.js';
 import * as userStore from './userStore.js';
 
 const DEMO_ACCOUNTS = [
@@ -39,6 +39,7 @@ const DEMO_ACCOUNTS = [
 ];
 
 try {
+  await connectMongoose();
   for (const { password, address, ...account } of DEMO_ACCOUNTS) {
     if (await userStore.emailExists(account.email)) {
       console.log(`Skipped ${account.email} (already exists)`);
@@ -57,5 +58,5 @@ try {
   console.error('Seeding failed:', error.message);
   process.exitCode = 1;
 } finally {
-  await closeDb();
+  await disconnectMongoose();
 }
