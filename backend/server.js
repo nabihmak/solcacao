@@ -9,6 +9,7 @@ import { makeStudent5Router, student5Collection, student5Mail } from './routes/s
 import { makeAuthRouter } from './routes/auth.js';
 import { makeUsersRouter } from './routes/users.js';
 import { protect, requireB2B } from './middleware/auth.js';
+import { requestLogger } from './middleware/requestLogger.js';
 import { makeStudent3Router } from './routes/student3.js';
 import { connectMongoose } from './config/mongoose.js';
 
@@ -42,6 +43,7 @@ const s3 = new S3Client({
 });
 
 app.use(cors())
+app.use(requestLogger()); // debug log: method, path, status and time of every request
 app.use(express.json({ limit: '32kb' }));
 app.use('/api/student5', makeStudent5Router({
   getCollection: student5Collection,
