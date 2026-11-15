@@ -6,9 +6,18 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { MongoClient } from 'mongodb';
 import { registerStudent2Routes } from './routes/student2.js';
 import { makeStudent5Router, student5Collection, student5Mail } from './routes/student5.js';
+import { makeAuthRouter } from './routes/auth.js';
+import { makeUsersRouter } from './routes/users.js';
+import { protect, requireB2B } from './middleware/auth.js';
 
 const app = express()
 dotenv.config();
+
+// Student 1 - sign-in tokens cannot be made or checked without a secret
+if (!process.env.JWT_SECRET) {
+  console.error('JWT_SECRET is missing. Copy backend/.env.example to backend/.env and set it.');
+  process.exit(1);
+}
 
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
@@ -38,6 +47,9 @@ app.use('/api/student5', makeStudent5Router({
 }));
 // Student 2 - Localization API and static assets
 registerStudent2Routes(app);
+// Student 1 - Authentication and profile management
+app.use('/api/auth', makeAuthRouter());
+app.use('/api/users', makeUsersRouter());
 
 export async function connectToMongoDB() {
   try {
@@ -49,10 +61,10 @@ export async function connectToMongoDB() {
   }
 }
 
-app.get('/api/b2b/quote', async (req, res) => {
+// Signed-in corporate partners only; each partner sees only their own quotes
+app.get('/api/b2b/quote', protect, requireB2B, async (req, res) => {
   try {
-    const user = JSON.parse(req.query.user);
-    const query = { status: "submitted", user: user.name };
+    const query = { status: "submitted", userId: req.user._id };
 
     await connectToMongoDB()
 
@@ -71,10 +83,10 @@ app.get('/api/b2b/quote', async (req, res) => {
 });
 
 
-app.post('/api/b2b/quote', upload.single('image'), async (req, res) => {
+app.post('/api/b2b/quote', protect, requireB2B, upload.single('image'), async (req, res) => {
 
   const caption = JSON.parse(req.body.caption);
-  const user = JSON.parse(req.body.user);
+  const user = req.user; // from the sign-in token, not from the browser
 
   const params = {
     Bucket: bucketName,
@@ -100,6 +112,7 @@ app.post('/api/b2b/quote', upload.single('image'), async (req, res) => {
       packagingNotes: caption.packagingNotes,
       notes: caption.notes,
       user: user.name,
+      userId: user._id,
       file: {
         key: params.Key,
         bucket: bucketName,
@@ -119,13 +132,20 @@ app.post('/api/b2b/quote', upload.single('image'), async (req, res) => {
 
   await s3.send(command)
 
-  res.status(201).json({ ok: true })
+  res.status(201).json({ ok: true, request: data })
 })
 
 
 export async function disconnectFromMongoDB() {
   await mongoClient.close();
 }
+
+// Unexpected errors answer with JSON instead of an HTML page
+app.use((err, req, res, next) => {
+  if (err.type === 'entity.parse.failed') return res.status(400).json({ message: 'Invalid JSON' });
+  console.error(err);
+  return res.status(500).json({ message: 'Something went wrong. Please try again.' });
+});
 
 const port = 3001
 app.listen(port, () => {
