@@ -1,152 +1,244 @@
 # SolCacao Artisanal Chocolate Platform
 
-A bilingual (English / Spanish) web application for SolCacao: direct-to-consumer chocolate
-shopping and B2B wholesale services.
+A bilingual (English / Spanish) full-stack web application for SolCacao: direct-to-consumer
+chocolate shopping and B2B wholesale services.
 
 > CSE 5335: Web Data Management · Fall Semester Group Project
 
-## Phase 2: Front-end development
+## Team
 
-Following the course syllabus, Phase 2 is the **React front end only**. The Node.js/Express
-API and the MySQL database are built in Phase 3.
+| Student | Name             | GitHub              | Area                                                |
+| ------- | ---------------- | ------------------- | --------------------------------------------------- |
+| 1       | Nabih Maknojia   | `nabihmak`          | Authentication, security and databases              |
+| 2       | Sushanth Muriki  | `suchim06-ops`      | Core layout, navigation and localization            |
+| 3       | Rutuja Dudhagundi| `rutuja-dudhagundi` | Catalog, search and cart                            |
+| 4       | Aadhitya Kumar   | `AadhityaKumar`     | Homepage, B2B services and quote wizard             |
+| 5       | Krishan Lnu      | `Krishan07503`      | Contact, feedback, sampler and email notifications  |
 
-In Phase 2 the app stored its data in the browser. In Phase 3 sign-in, registration and the
-account page use the Express API (`backend/`); the service files call `fetch()` and no
-component needed to change.
+## Tech stack
+
+| Layer          | Technology                                                    |
+| -------------- | ------------------------------------------------------------- |
+| Front end      | React 18, React Router 7, Tailwind CSS 3, Lucide React, Vite 7 |
+| Back end       | Node.js, Express 5                                            |
+| Database       | MongoDB Atlas with Mongoose (users, addresses, catalog, carts) and the MongoDB driver (B2B quotes, support submissions) |
+| Security       | JSON Web Tokens (JWT), bcrypt password hashing, role-based route guards |
+| File storage   | AWS S3 (B2B brand files, uploaded with multer)                |
+| Email          | Nodemailer over SMTP (support and sampler requests)           |
+| Tests          | Node test runner (back end), Vitest + jsdom (front end)       |
 
 ## Requirements
 
-- **Node.js 20.19 or newer** (Node 22 LTS recommended), which includes npm
-## Run the server
+- **Node.js 22.12 or newer** (includes npm)
+- A MongoDB Atlas connection string (ask the team; never commit it)
 
-1. Copy `backend/.env.example` to `backend/.env` and fill in the values. Sign-in needs
-   `MONGO_CONNECTION_STRING` (the team's MongoDB Atlas database) and `JWT_SECRET`.
-   Create a secret with:
-   `node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"`
-   Never commit `.env`.
-2. Install, add the demo accounts once, and start:
+## Setup
+
+### 1. Server (`backend/`)
+
+Copy `backend/.env.example` to `backend/.env` and fill in the values:
+
+| Variable                  | Needed for                         |
+| ------------------------- | ---------------------------------- |
+| `MONGO_CONNECTION_STRING` | Everything that uses the database  |
+| `JWT_SECRET`              | Sign-in tokens (long random text)  |
+| `BUCKET_NAME`, `BUCKET_REGION`, `ACCESS_KEY`, `SECRET_ACCESS_KEY` | B2B file uploads to S3 |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`, `SUPPORT_EMAIL` | Support emails (optional; submissions are still saved without them) |
+
+Create a `JWT_SECRET` with:
+`node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"`
 
 ```bash
 cd backend
 npm install
-npm run seed          # adds the two demo accounts (skips them if they exist)
-npm start             # opens on http://localhost:3001
-npm test              # runs every backend test (no database needed)
+npm run seed                    # demo accounts (skips them if they exist)
+node scripts/seedStudent3.js    # the 18 products and their stock
+npm start                       # http://localhost:3001
 ```
 
-The React app (`npm run dev` in `client/`) forwards `/api` calls to port 3001, so start
-the server first.
-
-## Run the app
+### 2. App (`client/`)
 
 ```bash
 cd client
 npm install
-npm run dev        # opens on http://localhost:5173
+npm run dev                     # http://localhost:5173
 ```
 
-Other commands (inside `client/`):
-
-| Command           | What it does                               |
-| ----------------- | ------------------------------------------ |
-| `npm test`        | Runs the unit tests (Vitest)               |
-| `npm run build`   | Builds the production version into `dist/` |
-| `npm run preview` | Serves the production build on port 4173   |
+The app forwards `/api` calls to port 3001, so keep the server running. Optional settings go
+in `client/.env.local`: `VITE_API_BASE_URL` (server address for a deployed site) and
+`VITE_WHATSAPP_NUMBER` (business number for the WhatsApp link).
 
 ### Demo accounts
-
-`npm run seed` (in `backend/`) adds these to the database:
 
 | Account type      | Email                   | Password    |
 | ----------------- | ----------------------- | ----------- |
 | Personal (Retail) | `ana@example.com`       | `Cacao2026` |
 | Corporate (B2B)   | `carlos@grandhotel.com` | `Hotel2026` |
 
-New accounts you register are saved in the `users` collection; passwords are stored as
-bcrypt hashes only.
+### Commands
+
+| Where      | Command           | What it does                                  |
+| ---------- | ----------------- | --------------------------------------------- |
+| `backend/` | `npm test`        | Runs every back-end test (no database needed) |
+| `client/`  | `npm test`        | Runs the front-end tests (Vitest)             |
+| `client/`  | `npm run build`   | Builds the production site into `dist/`       |
+| `client/`  | `npm run preview` | Serves the production build on port 4173      |
 
 ## Pages
 
 Every page has a language prefix: `/en/...` or `/es/...`.
 
-| Path           | Page                                                                       | Owner     |
-| -------------- | -------------------------------------------------------------------------- | --------- |
-| `/en`          | Home (placeholder)                                                         | Student 4 |
-| `/en/catalog`  | Catalog: search, filters (origin, cacao %, price, type), sort, pages       | Student 3 |
-| `/en/catalog/:slug` | Product details                                                       | Student 3 |
-| (any page)     | Slide-out cart, opened from the cart icon                                  | Student 3 |
-| `/en/b2b`      | Wholesale (placeholder)                                                    | Student 4 |
-| `/en/contact`  | Contact (inquiry categories, form validation, confirmation screen, feedback and chocolate sampler)                                                      | Student 5 |
-| `/en/register` | Registration: Personal or Corporate (`?type=b2b` opens the corporate form) | Student 1 |
-| `/en/account`  | My account: Profile, Company (B2B only), Addresses, Security               | Student 1 |
-| (any page)     | Sign-in dialog, opened from the "Sign in" button                           | Student 1 |
+| Path                 | Page                                                              | Owner     |
+| -------------------- | ----------------------------------------------------------------- | --------- |
+| `/en`                | Home: hero slides, seasonal picks, sampler promotion              | Students 4, 3 |
+| `/en/catalog`        | Catalog: search, filters (origin, cacao %, price, category), sort, pages | Student 3 |
+| `/en/catalog/:slug`  | Product details                                                   | Student 3 |
+| (any page)           | Slide-out cart, opened from the cart icon                         | Student 3 |
+| `/en/b2b`            | Wholesale and corporate services                                  | Student 4 |
+| `/en/b2b/quote`      | 4-step custom quote wizard (B2B accounts only)                    | Student 4 |
+| `/en/contact`        | Contact form and WhatsApp link                                    | Student 5 |
+| `/en/feedback`       | Feedback form                                                     | Student 5 |
+| `/en/sampler`        | Chocolate sampler builder (3 flavors)                             | Student 5 |
+| `/en/about`, `/en/faq` | About and FAQ                                                   | Student 5 |
+| `/en/register`       | Registration: Personal or Corporate (`?type=b2b` opens the corporate form) | Student 1 |
+| `/en/account`        | My account: Profile, Company (B2B only), Addresses, Security      | Student 1 |
+| (any page)           | Sign-in dialog, navbar, mobile menu, footer, language switch      | Students 1, 2 |
 
-The navbar, footer, routing shell and language toggle are a basic shell; Student 2 builds the
-final versions.
+## API map
+
+Access: **Public** = anyone · **User** = any signed-in user (`Authorization: Bearer <token>`) ·
+**Partner** = signed-in B2B account. Errors answer `{ message, errors? }` with the status code.
+
+| Method | Path                          | Access  | Body / query                                     | Success | Owner |
+| ------ | ----------------------------- | ------- | ------------------------------------------------ | ------- | ----- |
+| POST   | `/api/auth/register`          | Public  | name, email, password, accountType, company (B2B) | 201 `{ token, user }` | 1 |
+| POST   | `/api/auth/login`             | Public  | email, password                                  | 200 `{ token, user }` | 1 |
+| GET    | `/api/auth/me`                | User    | –                                                | 200 `{ user }` | 1 |
+| POST   | `/api/auth/logout`            | Public  | –                                                | 204 | 1 |
+| PUT    | `/api/users/profile`          | User    | name, phone, preferredLanguage, company (B2B)    | 200 `{ user }` | 1 |
+| PUT    | `/api/users/password`         | User    | currentPassword, newPassword                     | 200 | 1 |
+| GET    | `/api/users/addresses`        | User    | –                                                | 200 `{ addresses }` | 1 |
+| POST   | `/api/users/addresses`        | User    | label, street, city, state, postalCode, country, isDefault | 201 `{ address }` | 1 |
+| PUT    | `/api/users/addresses/:id`    | User    | any address field                                | 200 `{ address }` | 1 |
+| DELETE | `/api/users/addresses/:id`    | User    | –                                                | 200 | 1 |
+| GET    | `/api/health`                 | Public  | –                                                | 200 | 2 |
+| GET    | `/api/i18n/:lang`             | Public  | `lang` = `en` or `es`                            | 200 dictionary | 2 |
+| GET    | `/assets/*`                   | Public  | static files from `client/public`                | 200 | 2 |
+| GET    | `/api/products`               | Public  | `search`, `origin`, `category`, `minPct`, `maxPct`, `minPrice`, `maxPrice`, `inStock`, `sort`, `page`, `limit` | 200 `{ products, pagination, facets }` | 3 |
+| GET    | `/api/products/:slug`         | Public  | –                                                | 200 `{ product }` | 3 |
+| GET    | `/api/cart`                   | User    | –                                                | 200 `{ cart, adjustments }` | 3 |
+| POST   | `/api/cart/persist`           | User    | `{ items: [{ productId, quantity }] }`           | 200 `{ cart, adjustments }` | 3 |
+| POST   | `/api/cart/merge`             | User    | `{ items: [{ productId, quantity }] }`           | 200 `{ cart, adjustments }` | 3 |
+| GET    | `/api/b2b/quote`              | Partner | –                                                | 200 list of the partner's quotes | 4 |
+| POST   | `/api/b2b/quote`              | Partner | multipart: `caption` (JSON quote details) + `image` (brand file) | 201 `{ request }` | 4 |
+| POST   | `/api/student5/submissions`   | Public  | type (`contact`/`feedback`/`sampler`), name, email, category, message, consent, rating, flavors, quantity | 201 `{ id, emailStatus }` | 5 |
+
+Common errors: 400 invalid input (with field errors), 401 not signed in or token expired,
+403 not a B2B account, 404 not found, 409 email already registered.
+
+## Database schemas (MongoDB, database `solcacao`)
+
+**users** (`backend/models/User.js`, Student 1)
+
+| Field              | Type                 | Rules                                    |
+| ------------------ | -------------------- | ---------------------------------------- |
+| `_id`              | ObjectId             |                                          |
+| `name`             | String               | required, max 100                        |
+| `email`            | String               | required, unique, lower case             |
+| `passwordHash`     | String               | required, bcrypt hash, hidden from queries |
+| `accountType`      | String               | `Retail` or `B2B`                        |
+| `phone`            | String               | max 30                                   |
+| `preferredLanguage`| String               | `en` or `es`                             |
+| `corporatePartner` | CorporatePartner / null | required for B2B, null for Retail     |
+| `createdAt`, `updatedAt` | Date           |                                          |
+
+**CorporatePartner** (embedded in a user, `backend/models/CorporatePartner.js`, Student 1):
+`companyName` (required), `industry` (`Wholesale`, `Hotel`, `Corporate Events`, `Other`),
+`taxId`, `website`.
+
+**addresses** (`backend/models/Address.js`, Student 1)
+
+| Field                    | Type     | Rules                           |
+| ------------------------ | -------- | ------------------------------- |
+| `_id`                    | ObjectId |                                 |
+| `userId`                 | ObjectId | → users, indexed                |
+| `label`                  | String   | e.g. Home, Office               |
+| `street`, `city`, `postalCode`, `country` | String | required           |
+| `state`                  | String   |                                 |
+| `isDefault`              | Boolean  | one default per user            |
+| `createdAt`, `updatedAt` | Date     |                                 |
+
+**products** (`backend/models/Product.js`, Student 3)
+
+| Field          | Type                    | Rules                              |
+| -------------- | ----------------------- | ---------------------------------- |
+| `_id`          | String                  | e.g. `p-001`                       |
+| `sku`, `slug`  | String                  | required, unique                   |
+| `name`, `description` | `{ en, es }`     | localized text                     |
+| `tastingNotes` | `{ en: [String], es: [String] }` |                           |
+| `category`     | String                  | `bar`, `truffles`, `seasonal`      |
+| `origin`, `region` | String              |                                    |
+| `cacaoPct`     | Number                  | 0–100                              |
+| `price`        | Number                  | USD                                |
+| `weightGrams`, `featuredRank` | Number   |                                    |
+| `isOrganic`    | Boolean                 |                                    |
+
+**inventories** (`backend/models/Inventory.js`, Student 3): `product` (→ products, unique),
+`stock`, `lowStockThreshold`.
+
+**carts** (`backend/models/Cart.js`, Student 3): `user` (user id, unique),
+`items: [{ productId → products, quantity 1–99 }]` (up to 50 lines), `updatedAt`.
+
+**quotes** (`backend/server.js`, Student 4): `_id`, `reference` (e.g. `SC-2026-0021`),
+`userId` (→ users), `user`, `companyName`, `cacaoOrigin`, `cacaoPercentage`, `chocolateStyle`,
+`packagingType`, `quantity`, `deliveryDate`, `packagingNotes`, `notes`,
+`file: { key, bucket, originalName, mimeType, size }` (S3), `status`, `createdAt`.
+
+**student5_submissions** (`backend/routes/student5.js`, Student 5): `type` (`contact`,
+`feedback`, `sampler`), `name`, `email`, `category`, `message`, `consent`, `rating` (feedback),
+`flavors` and `quantity` (sampler), `emailStatus`, `createdAt`.
 
 ## Project structure
 
 ```
+backend/
+├── server.js           Express app: middleware, routes, B2B quote API, error handler
+├── config/mongoose.js  Shared Mongoose connection
+├── models/             User, CorporatePartner, Address, Product, Inventory, Cart
+├── middleware/auth.js  protect (JWT check) and requireB2B
+├── db/                 userStore (user/address queries), seed (demo accounts)
+├── routes/             auth, users, student2 (i18n), student3 (catalog/cart), student5 (forms) + tests
+├── scripts/            seedStudent3 (products and stock)
+└── utils/validation.js Server-side input checks
 client/src/
-├── components/
-│   ├── catalog/    ProductCard, ProductArt, FilterSidebar, RangeSlider, Pagination, StockStatus
-│   ├── cart/       CartButton, CartDrawer, CartLineItem, QuantityStepper, CartIndicator
-│   ├── auth/       AuthModal, LoginForm, RegisterForm, AccountTypeSelector, AccountButton, ProtectedRoute
-│   ├── layout/     LangLayout, Navbar, Footer, PagePlaceholder (shared shell)
-│   ├── profile/    ProfileDetailsForm, CompanyDetailsForm, AddressBook, AddressForm, ChangePasswordForm
-│   └── ui/         FormField, PasswordField, Button, Alert
-├── context/        AuthContext (signed-in user, sign in / out, sign-in dialog), CartContext + cartReducer
-├── data/           products.js (Phase 2 catalog + inventory seed)
-├── hooks/          usePageTitle
-├── i18n/           LanguageContext + locales/en.json, locales/es.json
-├── pages/          One file per page
-├── services/       apiClient (calls to the server), authService, userService, catalogMockApi + mockApi (Phase 2 cart data), productService, cartService, tokenStorage
-└── utils/          validation, apiErrors, focus, constants
+├── components/         auth, b2b, cart, catalog, home, layout, profile, support, ui
+├── context/            AuthContext, CartContext + cartReducer
+├── i18n/               LanguageContext + locales/en.json, locales/es.json
+├── pages/              One file per page
+├── services/           apiClient (shared fetch + token) and one service file per area
+└── utils/              Validation and helpers
 ```
 
-## Using auth in other components
+## Security
 
-```jsx
-import { useAuth } from '../context/AuthContext';
-
-const { user, isAuthenticated, isPartner, openAuthModal, logout } = useAuth();
-```
-
-Wrap a page that needs a signed-in user in `<ProtectedRoute>`, or use
-`<ProtectedRoute accountType="B2B">` for partner-only pages (for example the B2B wizard).
-
-On the server, protect a route with the same check. `req.user` is the signed-in user, taken
-from the token, so never trust a user object sent by the browser:
-
-```js
-import { protect, requireB2B } from './middleware/auth.js';
-
-app.get('/api/cart', protect, handler);                     // signed-in users only
-app.post('/api/b2b/quote', protect, requireB2B, handler);  // corporate partners only
-```
-
-From the React app, send the token with `apiRequest()` from `services/apiClient.js`
-(it adds `Authorization: Bearer <token>`), or `authHeader()` for file uploads.
-
-### Auth API (Student 1)
-
-| Method and path                  | Result                                        |
-| -------------------------------- | --------------------------------------------- |
-| `POST /api/auth/register`        | 201 `{ token, user }` · 400 · 409 email taken |
-| `POST /api/auth/login`           | 200 `{ token, user }` · 400 · 401             |
-| `GET /api/auth/me`               | 200 `{ user }` · 401                          |
-| `POST /api/auth/logout`          | 204                                           |
-| `PUT /api/users/profile`         | 200 `{ user }` · 400 · 401                    |
-| `PUT /api/users/password`        | 200 · 400 wrong current password · 401        |
-| `GET /api/users/addresses`       | 200 `{ addresses }` · 401                     |
-| `POST /api/users/addresses`      | 201 `{ address }` · 400 · 401                 |
-| `PUT /api/users/addresses/:id`   | 200 `{ address }` · 400 · 401 · 404           |
-| `DELETE /api/users/addresses/:id`| 200 · 401 · 404                               |
+- Passwords are hashed with bcrypt; the hash is never returned by the API.
+- Sign-in uses JWT (7 days). Protected routes use `protect`; partner routes add `requireB2B`.
+  The signed-in user always comes from the token, never from the request body.
+- Every route validates its input on the server; the front end checks too, for quick feedback.
+- Wrong email and wrong password give the same message, so accounts cannot be guessed.
+- Secrets live only in `backend/.env`, which git ignores.
 
 ## Accessibility
 
-Student 1's screens were tested against **WCAG 2.2 level AA** with axe-core, Google Lighthouse
-and scripted keyboard checks. See the Phase 2 accessibility check report for the results.
+Pages were checked against **WCAG 2.2 level AA** with axe-core, Lighthouse and keyboard-only use
+(labels on every field, visible focus, skip link, focus kept inside dialogs, no sideways scrolling
+at 320 px).
+
+## Deployment
+
+Build the front end with `npm run build` in `client/` and serve `client/dist/`. Run the server
+with `npm start` in `backend/` and set `VITE_API_BASE_URL` to the server's address before
+building. Live URL: _to be added once deployed._
 
 ## Git workflow
 
