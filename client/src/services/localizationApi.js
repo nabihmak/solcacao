@@ -4,12 +4,14 @@
  * Fetch server-side language dictionaries.
  */
 
+import { apiUrl } from './apiClient';
+
 export async function fetchTranslationDictionary(
   lang,
   { signal } = {}
 ) {
   const response = await fetch(
-    `/api/i18n/${encodeURIComponent(lang)}`,
+    apiUrl(`/api/i18n/${encodeURIComponent(lang)}`),
     { signal }
   );
 
