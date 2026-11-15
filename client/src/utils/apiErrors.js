@@ -1,5 +1,5 @@
 /**
- * Turns an error from the data layer (mockApi.js now, the REST API in Phase 3)
+ * Turns an error from the REST API (services/apiClient.js)
  * into something a form can show.
  *
  * Options let a form choose its own translated message for a status,
@@ -13,7 +13,7 @@ export function readApiError(error, t, { unauthorizedKey, badRequestKey } = {}) 
   // Server field errors look like [{ field: 'company.companyName', message: '...' }]
   const fieldErrors = {};
   (error.errors || []).forEach(({ field, message }) => {
-    // Phase 2 mock data layer sends translation keys; the Phase 3 API sends plain text
+    // Student 1 routes send translation keys (auth.errors.*); other messages are plain text
     fieldErrors[field] = message.startsWith('auth.') ? t(message) : message;
   });
 

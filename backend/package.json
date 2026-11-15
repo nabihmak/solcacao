@@ -6,9 +6,11 @@
     "@aws-sdk/client-s3": "^3.1164.0",
     "@prisma/client": "^6.19.3",
     "axios": "^1.21.0",
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dotenv": "^16.6.1",
     "express": "^5.3.0",
+    "jsonwebtoken": "^9.0.3",
     "mongodb": "^6.22.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^7.0.0"
@@ -25,6 +27,8 @@
   "scripts": {
     "postinstall": "prisma generate",
     "build": "next build",
-    "test": "node --test routes/student5.test.js"
+    "test": "node --test",
+    "start": "node server.js",
+    "seed": "node db/seed.js"
   }
 }

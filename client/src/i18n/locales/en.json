@@ -211,6 +211,7 @@
       "website": "Enter a full web address starting with http:// or https://",
       "invalidCredentials": "Invalid email or password.",
       "emailTaken": "An account with this email already exists.",
+      "tooLong": "This text is too long.",
       "network": "Cannot reach the server. Please try again.",
       "generic": "Something went wrong. Please try again.",
       "checkFields": "Please check the highlighted fields.",
