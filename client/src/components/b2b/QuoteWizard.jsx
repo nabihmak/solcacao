@@ -23,8 +23,7 @@ import Button from '../ui/Button';
 import Alert from '../ui/Alert';
 import OptionCards from './OptionCards';
 import WizardProgress from './WizardProgress';
-import { apiUrl, authHeader } from '../../services/apiClient';
-import axios from 'axios'
+import { apiRequest } from '../../services/apiClient';
 import { focusFirstInvalid } from '../../utils/focus';
 import {
   CHOCOLATE_STYLES,
@@ -124,8 +123,7 @@ export default function QuoteWizard({ onSubmitted }) {
     formData.append("caption", JSON.stringify(values));
     try {
       // The server finds the partner from the sign-in token
-      const { data } = await axios.post(apiUrl("/api/b2b/quote"), formData, { headers: {'Content-Type': 'multipart/form-data', ...authHeader()}});
-      const { request } = data;
+      const { request } = await apiRequest('/api/b2b/quote', { method: 'POST', body: formData });
       setResult(request);
       onSubmitted?.(request);
     } catch (error) {

@@ -1,6 +1,6 @@
 // Unit tests for apiClient (Student 1). fetch is replaced, so no server is needed.
 import { afterEach, describe, expect, test, vi } from 'vitest';
-import { apiRequest, authHeader } from './apiClient';
+import { apiRequest } from './apiClient';
 import { tokenStorage } from './tokenStorage';
 
 function reply(status, body) {
@@ -50,14 +50,21 @@ describe('apiRequest', () => {
     await expect(apiRequest('/api/auth/me')).rejects.toMatchObject({ status: 0 });
   });
 
+  test('a FormData body (file upload) is sent as is, without a JSON content type', async () => {
+    tokenStorage.set('abc123');
+    const fetchMock = reply(201, { request: { reference: 'SC-2026-0001' } });
+    vi.stubGlobal('fetch', fetchMock);
+    const form = new FormData();
+    form.append('caption', '{}');
+    const data = await apiRequest('/api/b2b/quote', { method: 'POST', body: form });
+    expect(data.request.reference).toBe('SC-2026-0001');
+    const [, options] = fetchMock.mock.calls[0];
+    expect(options.body).toBe(form);
+    expect(options.headers).toEqual({ Authorization: 'Bearer abc123' });
+  });
+
   test('204 No Content returns null', async () => {
     vi.stubGlobal('fetch', reply(204));
     expect(await apiRequest('/api/auth/logout', { method: 'POST' })).toBeNull();
   });
-});
-
-test('authHeader gives the Bearer header only when signed in', () => {
-  expect(authHeader()).toEqual({});
-  tokenStorage.set('xyz');
-  expect(authHeader()).toEqual({ Authorization: 'Bearer xyz' });
 });

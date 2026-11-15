@@ -12,8 +12,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../i18n/LanguageContext';
 import usePageTitle from '../hooks/usePageTitle';
 import QuoteWizard from '../components/b2b/QuoteWizard';
-import { apiUrl, authHeader } from '../services/apiClient';
-import axios from 'axios'
+import { apiRequest } from '../services/apiClient';
 
 
 export default function B2BQuotePage() {
@@ -26,12 +25,8 @@ export default function B2BQuotePage() {
   const loadRequests = useCallback(async () => {
     try {
       // Only this partner's quotes come back: the server reads the sign-in token
-      const response = await axios.get(
-        apiUrl('/api/b2b/quote'),
-        { headers: authHeader() }
-      );
-
-      setRequests(response.data);
+      const list = await apiRequest('/api/b2b/quote');
+      setRequests(Array.isArray(list) ? list : []);
 
     } catch (error) {
       console.error("Error loading quotes:", error);
