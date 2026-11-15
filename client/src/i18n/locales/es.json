@@ -211,6 +211,7 @@
       "website": "Introduce una dirección web completa que empiece por http:// o https://",
       "invalidCredentials": "Correo electrónico o contraseña incorrectos.",
       "emailTaken": "Ya existe una cuenta con este correo electrónico.",
+      "tooLong": "Este texto es demasiado largo.",
       "network": "No se puede conectar con el servidor. Inténtalo de nuevo.",
       "generic": "Algo salió mal. Inténtalo de nuevo.",
       "checkFields": "Revisa los campos marcados.",

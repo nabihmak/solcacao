@@ -15,7 +15,7 @@
  * gives the same 401 as every other protected call.
  */
 import { CATEGORIES, INVENTORY, PRODUCTS, SORT_OPTIONS } from '../data/products';
-import { getMe } from './mockApi';
+import { fetchUserForToken as getMe } from './authService';
 
 const CARTS_KEY = 'solcacao_mock_carts';
 const DELAY_MS = import.meta.env.MODE === 'test' ? 0 : 250;
