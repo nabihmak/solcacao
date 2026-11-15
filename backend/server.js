@@ -9,6 +9,8 @@ import { makeStudent5Router, student5Collection, student5Mail } from './routes/s
 import { makeAuthRouter } from './routes/auth.js';
 import { makeUsersRouter } from './routes/users.js';
 import { protect, requireB2B } from './middleware/auth.js';
+import { makeStudent3Router } from './routes/student3.js';
+import { connectMongoose } from './config/mongoose.js';
 
 const app = express()
 dotenv.config();
@@ -50,6 +52,9 @@ registerStudent2Routes(app);
 // Student 1 - Authentication and profile management
 app.use('/api/auth', makeAuthRouter());
 app.use('/api/users', makeUsersRouter());
+// Student 3 - Catalog, search and saved cart
+app.use('/api', makeStudent3Router());
+connectMongoose().catch((err) => console.warn('Catalog/cart database not connected:', err.message));
 
 export async function connectToMongoDB() {
   try {
