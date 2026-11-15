@@ -329,12 +329,12 @@
     "privacy": "Your contact details and message are submitted to the SolCacao server when you send the form.",
     "aboutText": "SolCacao is an artisanal chocolate platform for individual chocolate lovers and business partners. Discover cacao profiles, explore personalized samplers, and learn about wholesale confectionery. This student project currently demonstrates the front-end experience.",
     "q1": "Can I order a sampler here?",
-    "a1": "Choose three flavors and a quantity in the sampler builder, then submit your request. This sends a sampler inquiry, not a confirmed purchase or delivery order."
+    "a1": "Choose three flavors and a quantity in the sampler builder, then submit your request. This sends a sampler inquiry, not a confirmed purchase or delivery order.",
     "q2": "How do wholesale inquiries work?",
     "a2": "Choose Wholesale inquiry in the contact form and submit your message to the SolCacao team.",
     "q3": "Where can I find allergen information?",
     "a3": "Before ordering, request verified ingredients and allergen details from the business. Demo flavor names do not establish dietary or allergy safety.",
-   "received": "Your request has been received.",
+    "received": "Your request has been received.",
     "receivedDetail": "Thank you for contacting SolCacao. Your request was submitted successfully.",
     "another": "Write another message",
     "eyebrow": "A little conversation. A world of cacao.",
@@ -493,7 +493,7 @@
       "title": "Your quote request was sent",
       "text": "Thank you. Our B2B team will review request {reference} and reply with a quote.",
       "reference": "Reference",
-      "demoNote": "Phase 2 demo: the request is saved in this browser only. Email delivery and file storage are connected in Phase 3.",
+      "demoNote": "Our B2B team has your request and brand file. You can follow it under \"Your quote requests\" below.",
       "another": "Start another request"
     },
     "errors": {
