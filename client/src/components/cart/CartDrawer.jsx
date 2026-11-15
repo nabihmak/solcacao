@@ -52,7 +52,7 @@ export default function CartDrawer() {
         <span className="text-xl font-semibold text-cocoa-900">{formatPrice(subtotal, lang)}</span>
       </div>
       <p className="text-xs text-cocoa-600">{t('shop.cart.shippingNote')}</p>
-      {/* Checkout is not part of Phase 2; the button shows where it will go */}
+      {/* Checkout is not built yet; the button shows where it will go */}
       <Button variant="gold" className="w-full" disabled aria-describedby="checkout-note">
         {t('shop.cart.checkout')}
       </Button>

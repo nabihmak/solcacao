@@ -125,7 +125,7 @@
       "subtotal": "Subtotal",
       "shippingNote": "Shipping and taxes are calculated at checkout.",
       "checkout": "Checkout",
-      "checkoutSoon": "Checkout is connected in Phase 3.",
+      "checkoutSoon": "Online checkout is coming soon.",
       "remove": "Remove {name}",
       "each": "{price} each",
       "added": "{name} added to your cart",
@@ -509,6 +509,25 @@
       "tooLong": "This text is too long.",
       "checkFields": "Please check the highlighted fields.",
       "partnerOnly": "Please sign in with a corporate account to send a quote request."
+    }
+  },
+  "homeSections": {
+    "sampler": {
+      "eyebrow": "Build your own",
+      "title": "Create your tasting sampler",
+      "text": "Not sure where to start? Choose three flavors you love and we will pack them into your own tasting box. It makes a great gift, too.",
+      "step1": "Pick any three of our six flavors",
+      "step2": "Choose how many boxes you need",
+      "step3": "We confirm your sampler by email",
+      "cta": "Build my sampler",
+      "flavorsTitle": "Six flavors to choose from",
+      "note": "Each box holds three different chocolates."
+    },
+    "seasonal": {
+      "eyebrow": "Limited editions",
+      "title": "Seasonal picks",
+      "viewAll": "See all seasonal chocolates",
+      "loading": "Loading seasonal chocolates…"
     }
   }
 }

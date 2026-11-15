@@ -1,6 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import '../hero.css'
+import SamplerPromo from '../components/home/SamplerPromo';
+import SeasonalPicks from '../components/home/SeasonalPicks';
 
 const slides = [
   {
@@ -122,6 +124,11 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Phase 2 demo feedback: promote the sampler builder on the homepage */}
+      <SamplerPromo />
+      {/* Seasonal cacao showcase, loaded from the catalog API */}
+      <SeasonalPicks />
     </main>
   );
 }
