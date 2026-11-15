@@ -1,7 +1,7 @@
 /**
  * mongoose.js - Mongoose connection for the catalog and cart (Student 3).
  * Uses the same MONGO_CONNECTION_STRING and database as the rest of the backend
- * (Student 1's config/db.js uses the plain MongoDB driver for users and addresses).
+ * Student 1's User and Address models use this same connection.
  */
 import mongoose from 'mongoose';
 

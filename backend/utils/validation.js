@@ -7,9 +7,11 @@
  * validate() turns them into the error list the front end expects:
  *   [{ field: 'email', message: 'auth.errors.email' }]
  */
-export const INDUSTRIES = ['Wholesale', 'Hotel', 'Corporate Events', 'Other'];
-export const LANGUAGES = ['en', 'es'];
-export const ACCOUNT_TYPES = ['Retail', 'B2B'];
+import { INDUSTRIES } from '../models/CorporatePartner.js';
+import { ACCOUNT_TYPES, LANGUAGES } from '../models/User.js';
+
+// Same lists as the models, so the routes and the database always agree
+export { INDUSTRIES, ACCOUNT_TYPES, LANGUAGES };
 
 const EMAIL_PATTERN = /^\S+@\S+\.\S+$/;
 const PASSWORD_PATTERN = /^(?=.*[A-Za-z])(?=.*\d).{8,72}$/; // bcrypt only reads the first 72 bytes
