@@ -493,7 +493,7 @@
       "title": "Tu solicitud de cotización fue enviada",
       "text": "Gracias. Nuestro equipo B2B revisará la solicitud {reference} y te responderá con una cotización.",
       "reference": "Referencia",
-      "demoNote": "Demostración de la Fase 2: la solicitud se guarda solo en este navegador. El envío por correo y el almacenamiento de archivos se conectan en la Fase 3.",
+      "demoNote": "Se ha subido correctamente al servidor.",
       "another": "Crear otra solicitud"
     },
     "errors": {

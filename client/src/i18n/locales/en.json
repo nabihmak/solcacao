@@ -493,7 +493,7 @@
       "title": "Your quote request was sent",
       "text": "Thank you. Our B2B team will review request {reference} and reply with a quote.",
       "reference": "Reference",
-      "demoNote": "Phase 2 demo: the request is saved in this browser only. Email delivery and file storage are connected in Phase 3.",
+      "demoNote": "Succesfully uploaded to server.",
       "another": "Start another request"
     },
     "errors": {
