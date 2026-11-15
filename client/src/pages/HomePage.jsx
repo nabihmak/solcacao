@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import '../hero.css'
 import SamplerPromo from '../components/home/SamplerPromo';
 import SeasonalPicks from '../components/home/SeasonalPicks';
+import { Link } from 'react-router-dom';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const slides = [
   {
@@ -10,7 +12,7 @@ const slides = [
     description:
       'Explore our latest collections and find something you will love.',
     image:
-      "public/slide_images/2-ingredient-candy-bars.jpg",
+      "public/B2B/images/2-ingredient-candy-bars.jpg",
     buttonText: 'Explore Collection',
   },
   {
@@ -18,7 +20,7 @@ const slides = [
     description:
       'Refresh your taste with timeless styles and seasonal favorites.',
     image:
-      'public/slide_images/ChocolateFam_963aba64-9104-4da4-be24-55ff24efa296.webp',
+      'public/B2B/images/ChocolateFam_963aba64-9104-4da4-be24-55ff24efa296.webp',
     buttonText: 'Shop Now',
   },
   {
@@ -26,13 +28,15 @@ const slides = [
     description:
       'Discover new ideas and make every moment your own.',
     image:
-      'public/slide_images/Homemade-Dark-Chocolate_-2.webp',
+      'public/B2B/images/Homemade-Dark-Chocolate_-2.webp',
     buttonText: 'Discover More',
   },
 ];
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const { localePath } = useLanguage();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -80,15 +84,12 @@ export default function HomePage() {
 
             <p>{slide.description}</p>
 
-            <button
+            <Link
+              to={localePath('/catalog')}
               className="hero-cta"
-              onClick={() => {
-                // Replace with your collection or product route.
-                window.location.href = '/shop';
-              }}
             >
               {slide.buttonText}
-            </button>
+            </Link>
           </div>
 
           <button
