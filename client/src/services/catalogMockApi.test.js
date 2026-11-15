@@ -2,17 +2,9 @@
  * Unit tests for the Phase 2 catalog and cart endpoints (run with: npm test).
  * They check that the mock answers like the planned REST API.
  */
-import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 import * as catalog from './catalogMockApi';
-
-// Sign-in is checked by the real API now (GET /api/auth/me); these tests use two fake tokens
-const USERS = { 'token-ana': { _id: 'demo-ana' }, 'token-carlos': { _id: 'demo-carlos' } };
-vi.mock('./authService', () => ({
-  fetchUserForToken: async (token) => {
-    if (USERS[token]) return { user: USERS[token] };
-    throw Object.assign(new Error('Not authorized'), { status: 401 });
-  },
-}));
+import * as authApi from './mockApi';
 
 async function failure(promise) {
   try {
@@ -95,8 +87,9 @@ describe('GET /api/products/:slug', () => {
 describe('cart persistence and guest merge', () => {
   let token;
   beforeEach(async () => {
+    authApi.resetMockDb();
     catalog.resetMockCarts();
-    token = 'token-ana';
+    ({ token } = await authApi.login('ana@example.com', 'Cacao2026'));
   });
 
   test('a new account starts with an empty cart', async () => {
@@ -143,6 +136,7 @@ describe('cart persistence and guest merge', () => {
 
   test('each account has its own cart', async () => {
     await catalog.persistCart(token, [{ productId: 'p-001', quantity: 1 }]);
-    expect((await catalog.getCart('token-carlos')).cart.items).toEqual([]);
+    const other = await authApi.login('carlos@grandhotel.com', 'Hotel2026');
+    expect((await catalog.getCart(other.token)).cart.items).toEqual([]);
   });
 });

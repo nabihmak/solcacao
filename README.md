@@ -100,7 +100,7 @@ client/src/
 ├── hooks/          usePageTitle
 ├── i18n/           LanguageContext + locales/en.json, locales/es.json
 ├── pages/          One file per page
-├── services/       apiClient (calls to the server), authService, userService, catalogMockApi, productService, cartService, tokenStorage
+├── services/       apiClient (calls to the server), authService, userService, catalogMockApi + mockApi (Phase 2 cart data), productService, cartService, tokenStorage
 └── utils/          validation, apiErrors, focus, constants
 ```
 
