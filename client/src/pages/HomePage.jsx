@@ -12,7 +12,7 @@ const slides = [
     description:
       'Explore our latest collections and find something you will love.',
     image:
-      "public/B2B/images/2-ingredient-candy-bars.jpg",
+      "/B2B/images/2-ingredient-candy-bars.jpg",
     buttonText: 'Explore Collection',
   },
   {
@@ -20,7 +20,7 @@ const slides = [
     description:
       'Refresh your taste with timeless styles and seasonal favorites.',
     image:
-      'public/B2B/images/ChocolateFam_963aba64-9104-4da4-be24-55ff24efa296.webp',
+      '/B2B/images/ChocolateFam_963aba64-9104-4da4-be24-55ff24efa296.webp',
     buttonText: 'Shop Now',
   },
   {
@@ -28,7 +28,7 @@ const slides = [
     description:
       'Discover new ideas and make every moment your own.',
     image:
-      'public/B2B/images/Homemade-Dark-Chocolate_-2.webp',
+      '/B2B/images/Homemade-Dark-Chocolate_-2.webp',
     buttonText: 'Discover More',
   },
 ];
