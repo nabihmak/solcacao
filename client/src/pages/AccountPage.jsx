@@ -1,6 +1,7 @@
 /**
  * AccountPage (/:lang/account) - profile management panel (Student 1).
- * Tabs: Profile, Company (B2B only), Addresses, Security.
+ * Tabs: Profile, Company (B2B only), Addresses, Orders (Student 3), Security.
+ * Open a tab from a link with ?tab=<id>, e.g. /en/account?tab=orders.
  * Wrapped in <ProtectedRoute> in App.jsx, so a user is always signed in here.
  *
  * The tabs follow the standard accessible tabs pattern:
@@ -8,8 +9,8 @@
  *  - only the selected tab is in the Tab order; Left/Right arrows, Home and End move between tabs
  */
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Building2, KeyRound, LogOut, MapPin, UserRound } from 'lucide-react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Building2, KeyRound, LogOut, MapPin, Package, UserRound } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../i18n/LanguageContext';
 import usePageTitle from '../hooks/usePageTitle';
@@ -17,12 +18,14 @@ import ProfileDetailsForm from '../components/profile/ProfileDetailsForm';
 import CompanyDetailsForm from '../components/profile/CompanyDetailsForm';
 import AddressBook from '../components/profile/AddressBook';
 import ChangePasswordForm from '../components/profile/ChangePasswordForm';
+import OrderHistory from '../components/profile/OrderHistory';
 import Button from '../components/ui/Button';
 
 const TABS = [
   { id: 'profile', icon: UserRound, Panel: ProfileDetailsForm },
   { id: 'company', icon: Building2, Panel: CompanyDetailsForm, b2bOnly: true },
   { id: 'addresses', icon: MapPin, Panel: AddressBook },
+  { id: 'orders', icon: Package, Panel: OrderHistory },
   { id: 'security', icon: KeyRound, Panel: ChangePasswordForm },
 ];
 
@@ -30,7 +33,8 @@ export default function AccountPage() {
   const { user, isPartner, logout } = useAuth();
   const { t, localePath } = useLanguage();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('profile');
+  const [searchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'profile');
   const tabRefs = useRef({});
   usePageTitle(t('account.title'));
 

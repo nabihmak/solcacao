@@ -125,7 +125,6 @@
       "subtotal": "Subtotal",
       "shippingNote": "El envío y los impuestos se calculan al pagar.",
       "checkout": "Pagar",
-      "checkoutSoon": "El pago en línea estará disponible pronto.",
       "remove": "Quitar {name}",
       "each": "{price} c/u",
       "added": "{name} se agregó a tu carrito",
@@ -136,6 +135,64 @@
       "saving": "Guardando en tu cuenta…",
       "saved": "Guardado en tu cuenta",
       "saveError": "No se pudo guardar en tu cuenta. El carrito se conserva en este dispositivo."
+    },
+    "checkout": {
+      "eyebrow": "Pago seguro",
+      "title": "Finalizar compra",
+      "contactTitle": "Datos de contacto",
+      "phoneHint": "Opcional: el repartidor puede llamar antes de la entrega.",
+      "emailNote": "Enviaremos las novedades a {email}.",
+      "addressTitle": "Dirección de envío",
+      "newAddress": "Enviar a una dirección nueva",
+      "default": "Predeterminada",
+      "saveAddress": "Guardar esta dirección en mi cuenta",
+      "deliveryTitle": "Entrega",
+      "methods": {
+        "standard": {
+          "title": "Entrega estándar",
+          "time": "3–5 días hábiles"
+        },
+        "express": {
+          "title": "Entrega exprés",
+          "time": "1–2 días hábiles"
+        }
+      },
+      "freeShippingHint": "Agrega {amount} más para obtener envío estándar gratis.",
+      "paymentTitle": "Pago",
+      "payOnDelivery": "Pago contra entrega",
+      "payOnDeliveryText": "Paga con tarjeta o en efectivo cuando llegue tu chocolate. No necesitas datos de tarjeta ahora.",
+      "summaryTitle": "Resumen del pedido",
+      "editCart": "Editar carrito",
+      "qtyEach": "{quantity} × {price}",
+      "shipping": "Envío",
+      "free": "Gratis",
+      "tax": "Impuesto estimado (8.25%)",
+      "total": "Total",
+      "placeOrder": "Realizar pedido · {total}",
+      "terms": "Los precios y el inventario se verifican de nuevo al realizar el pedido.",
+      "cartChanged": "Algunos productos de tu carrito cambiaron (agotados o con menos unidades). Actualizamos tu carrito: revísalo y vuelve a realizar el pedido.",
+      "priceChanged": "Un precio cambió desde que abriste el pago. El nuevo total es {total}. Haz clic en \"Realizar pedido\" para confirmar.",
+      "emptyTitle": "No hay nada que pagar"
+    },
+    "order": {
+      "thanksTitle": "¡Gracias! Tu pedido fue realizado.",
+      "thanksText": "Tu número de pedido es {reference}. Guárdalo para cualquier consulta sobre tu entrega.",
+      "title": "Pedido {reference}",
+      "placedOn": "Realizado el {date}",
+      "reference": "Número de pedido",
+      "status": "Estado",
+      "delivery": "Entrega",
+      "items": "Productos ({count})",
+      "shipTo": "Enviar a",
+      "statuses": {
+        "placed": "Realizado",
+        "shipped": "Enviado",
+        "delivered": "Entregado",
+        "cancelled": "Cancelado"
+      },
+      "continue": "Seguir comprando",
+      "viewOrders": "Ver mis pedidos",
+      "notFound": "No encontramos este pedido."
     }
   },
   "common": {
@@ -238,7 +295,8 @@
       "profile": "Perfil",
       "company": "Empresa",
       "addresses": "Direcciones",
-      "security": "Seguridad"
+      "security": "Seguridad",
+      "orders": "Pedidos"
     },
     "profile": {
       "title": "Datos personales",
@@ -272,6 +330,12 @@
     "languages": {
       "en": "English",
       "es": "Español"
+    },
+    "orders": {
+      "title": "Mis pedidos",
+      "text": "Todos tus pedidos, del más reciente al más antiguo.",
+      "empty": "Todavía no has realizado ningún pedido.",
+      "itemCount": "{count} productos"
     }
   },
   "cart": {

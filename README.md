@@ -94,6 +94,8 @@ Every page has a language prefix: `/en/...` or `/es/...`.
 | `/en/catalog`        | Catalog: search, filters (origin, cacao %, price, category), sort, pages | Student 3 |
 | `/en/catalog/:slug`  | Product details                                                   | Student 3 |
 | (any page)           | Slide-out cart, opened from the cart icon                         | Student 3 |
+| `/en/checkout`       | Checkout: contact, shipping address, delivery, pay on delivery (signed in) | Student 3 |
+| `/en/orders/:reference` | Order confirmation and order details (signed in)               | Student 3 |
 | `/en/b2b`            | Wholesale and corporate services                                  | Student 4 |
 | `/en/b2b/quote`      | 4-step custom quote wizard (B2B accounts only)                    | Student 4 |
 | `/en/contact`        | Contact form and WhatsApp link                                    | Student 5 |
@@ -101,7 +103,7 @@ Every page has a language prefix: `/en/...` or `/es/...`.
 | `/en/sampler`        | Chocolate sampler builder (3 flavors)                             | Student 5 |
 | `/en/about`, `/en/faq` | About and FAQ                                                   | Student 5 |
 | `/en/register`       | Registration: Personal or Corporate (`?type=b2b` opens the corporate form) | Student 1 |
-| `/en/account`        | My account: Profile, Company (B2B only), Addresses, Security      | Student 1 |
+| `/en/account`        | My account: Profile, Company (B2B only), Addresses, Orders, Security (`?tab=orders` opens Orders) | Students 1, 3 |
 | (any page)           | Sign-in dialog, navbar, mobile menu, footer, language switch      | Students 1, 2 |
 
 ## API map
@@ -129,12 +131,22 @@ Access: **Public** = anyone · **User** = any signed-in user (`Authorization: Be
 | GET    | `/api/cart`                   | User    | –                                                | 200 `{ cart, adjustments }` | 3 |
 | POST   | `/api/cart/persist`           | User    | `{ items: [{ productId, quantity }] }`           | 200 `{ cart, adjustments }` | 3 |
 | POST   | `/api/cart/merge`             | User    | `{ items: [{ productId, quantity }] }`           | 200 `{ cart, adjustments }` | 3 |
+| POST   | `/api/orders`                 | User    | `{ items, shipping: { fullName, phone?, street, city, state?, postalCode, country }, shippingMethod: standard\|express, paymentMethod: payOnDelivery, expectedTotal? }` | 201 `{ order }` · 409 cart or price changed | 3 |
+| GET    | `/api/orders`                 | User    | –                                                | 200 `{ orders }` (newest first) | 3 |
+| GET    | `/api/orders/:reference`      | User    | –                                                | 200 `{ order }` (own orders only) | 3 |
 | GET    | `/api/b2b/quote`              | Partner | –                                                | 200 list of the partner's quotes | 4 |
 | POST   | `/api/b2b/quote`              | Partner | multipart: `caption` (JSON quote details) + `image` (brand file) | 201 `{ request }` | 4 |
 | POST   | `/api/student5/submissions`   | Public  | type (`contact`/`feedback`/`sampler`), name, email, category, message, consent, rating, flavors, quantity | 201 `{ id, emailStatus }` | 5 |
 
 Common errors: 400 invalid input (with field errors), 401 not signed in or token expired,
-403 not a B2B account, 404 not found, 409 email already registered.
+403 not a B2B account, 404 not found, 409 email already registered or (checkout) the cart or a price
+changed since the page was opened.
+
+**Checkout rules (Student 3):** prices come from `products`, never from the browser. Shipping:
+standard $5.95 (free from $50), express $14.95; tax 8.25% of the subtotal; money is added up in cents.
+Stock is taken with one conditional update per product (`stock >= quantity`) and given back if the
+order cannot be saved, so two shoppers cannot buy the same last bar. After the order, the saved cart
+is emptied.
 
 ## Database schemas (MongoDB, database `solcacao`)
 
@@ -188,6 +200,13 @@ Common errors: 400 invalid input (with field errors), 401 not signed in or token
 
 **carts** (`backend/models/Cart.js`, Student 3): `user` (user id, unique),
 `items: [{ productId → products, quantity 1–99 }]` (up to 50 lines), `updatedAt`.
+
+**orders** (`backend/models/Order.js`, Student 3): `reference` (unique, e.g. `SC-ORD-2026-7K3F9Q`),
+`user` (user id), `items: [{ productId, sku, slug, name { en, es }, origin, cacaoPct, category, unitPrice,
+quantity, lineTotal }]` (a copy of the product at purchase time), `shippingAddress { fullName, phone,
+street, city, state, postalCode, country }`, `shippingMethod`, `paymentMethod`, `subtotal`,
+`shippingCost`, `tax`, `total`, `currency`, `status` (`placed`, `shipped`, `delivered`, `cancelled`),
+`createdAt`, `updatedAt`.
 
 **quotes** (`backend/server.js`, Student 4): `_id`, `reference` (e.g. `SC-2026-0021`),
 `userId` (→ users), `user`, `companyName`, `cacaoOrigin`, `cacaoPercentage`, `chocolateStyle`,
