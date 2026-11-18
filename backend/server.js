@@ -11,6 +11,7 @@ import { makeUsersRouter } from './routes/users.js';
 import { protect, requireB2B } from './middleware/auth.js';
 import { requestLogger } from './middleware/requestLogger.js';
 import { makeStudent3Router } from './routes/student3.js';
+import { makeOrdersRouter } from './routes/orders.js';
 import { connectMongoose } from './config/mongoose.js';
 
 const app = express()
@@ -56,6 +57,8 @@ app.use('/api/auth', makeAuthRouter());
 app.use('/api/users', makeUsersRouter());
 // Student 3 - Catalog, search and saved cart
 app.use('/api', makeStudent3Router());
+// Student 3 - Checkout and order history
+app.use('/api/orders', makeOrdersRouter());
 connectMongoose().catch((err) => console.warn('Catalog/cart database not connected:', err.message));
 
 export async function connectToMongoDB() {

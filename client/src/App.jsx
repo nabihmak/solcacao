@@ -16,6 +16,8 @@ import InfoPage from './pages/InfoPage';
 import NotFoundPage from './pages/NotFoundPage';
 import RegisterPage from './pages/RegisterPage';
 import AccountPage from './pages/AccountPage';
+import CheckoutPage from './pages/CheckoutPage';
+import OrderConfirmationPage from './pages/OrderConfirmationPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 export default function App() {
@@ -29,6 +31,23 @@ export default function App() {
         {/* Student 3: catalog and product pages */}
         <Route path="catalog" element={<CatalogPage />} />
         <Route path="catalog/:slug" element={<ProductDetailPage />} />
+        {/* Student 3: checkout and orders (signed-in users only) */}
+        <Route
+          path="checkout"
+          element={
+            <ProtectedRoute>
+              <CheckoutPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="orders/:reference"
+          element={
+            <ProtectedRoute>
+              <OrderConfirmationPage />
+            </ProtectedRoute>
+          }
+        />
         {/* Student 4: wholesale services and the partner-only quote wizard */}
         <Route path="b2b" element={<B2BPage />} />
         <Route

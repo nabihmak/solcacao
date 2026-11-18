@@ -125,7 +125,6 @@
       "subtotal": "Subtotal",
       "shippingNote": "Shipping and taxes are calculated at checkout.",
       "checkout": "Checkout",
-      "checkoutSoon": "Online checkout is coming soon.",
       "remove": "Remove {name}",
       "each": "{price} each",
       "added": "{name} added to your cart",
@@ -136,6 +135,64 @@
       "saving": "Saving to your account…",
       "saved": "Saved to your account",
       "saveError": "Could not save to your account. The cart is kept on this device."
+    },
+    "checkout": {
+      "eyebrow": "Secure checkout",
+      "title": "Checkout",
+      "contactTitle": "Contact details",
+      "phoneHint": "Optional – the courier may call before delivery.",
+      "emailNote": "We will send updates to {email}.",
+      "addressTitle": "Shipping address",
+      "newAddress": "Ship to a new address",
+      "default": "Default",
+      "saveAddress": "Save this address to my account",
+      "deliveryTitle": "Delivery",
+      "methods": {
+        "standard": {
+          "title": "Standard delivery",
+          "time": "3–5 business days"
+        },
+        "express": {
+          "title": "Express delivery",
+          "time": "1–2 business days"
+        }
+      },
+      "freeShippingHint": "Add {amount} more for free standard delivery.",
+      "paymentTitle": "Payment",
+      "payOnDelivery": "Pay on delivery",
+      "payOnDeliveryText": "Pay by card or cash when your chocolate arrives. No card details are needed now.",
+      "summaryTitle": "Order summary",
+      "editCart": "Edit cart",
+      "qtyEach": "{quantity} × {price}",
+      "shipping": "Shipping",
+      "free": "Free",
+      "tax": "Estimated tax (8.25%)",
+      "total": "Total",
+      "placeOrder": "Place order · {total}",
+      "terms": "Prices and stock are checked again when you place the order.",
+      "cartChanged": "Some items in your cart changed (sold out or fewer left). We updated your cart – please review it and place the order again.",
+      "priceChanged": "A price changed since you opened checkout. The new total is {total}. Click \"Place order\" to confirm.",
+      "emptyTitle": "There is nothing to check out"
+    },
+    "order": {
+      "thanksTitle": "Thank you! Your order is placed.",
+      "thanksText": "Your order number is {reference}. Keep it for any questions about your delivery.",
+      "title": "Order {reference}",
+      "placedOn": "Placed on {date}",
+      "reference": "Order number",
+      "status": "Status",
+      "delivery": "Delivery",
+      "items": "Items ({count})",
+      "shipTo": "Ship to",
+      "statuses": {
+        "placed": "Placed",
+        "shipped": "Shipped",
+        "delivered": "Delivered",
+        "cancelled": "Cancelled"
+      },
+      "continue": "Continue shopping",
+      "viewOrders": "View my orders",
+      "notFound": "We could not find this order."
     }
   },
   "common": {
@@ -238,7 +295,8 @@
       "profile": "Profile",
       "company": "Company",
       "addresses": "Addresses",
-      "security": "Security"
+      "security": "Security",
+      "orders": "Orders"
     },
     "profile": {
       "title": "Personal details",
@@ -272,6 +330,12 @@
     "languages": {
       "en": "English",
       "es": "Español"
+    },
+    "orders": {
+      "title": "My orders",
+      "text": "Every order you placed, newest first.",
+      "empty": "You have not placed an order yet.",
+      "itemCount": "{count} items"
     }
   },
   "cart": {

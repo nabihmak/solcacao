@@ -9,7 +9,6 @@ import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { formatPrice, localized } from '../../utils/format';
 import Drawer from '../ui/Drawer';
-import Button from '../ui/Button';
 import CartLineItem from './CartLineItem';
 
 function SyncNote() {
@@ -52,13 +51,14 @@ export default function CartDrawer() {
         <span className="text-xl font-semibold text-cocoa-900">{formatPrice(subtotal, lang)}</span>
       </div>
       <p className="text-xs text-cocoa-600">{t('shop.cart.shippingNote')}</p>
-      {/* Checkout is not built yet; the button shows where it will go */}
-      <Button variant="gold" className="w-full" disabled aria-describedby="checkout-note">
+      {/* Guests are asked to sign in on the checkout page; their cart is merged first */}
+      <Link
+        to={localePath('/checkout')}
+        onClick={closeCart}
+        className="inline-flex w-full items-center justify-center rounded-full bg-gold-500 px-5 py-2.5 text-sm font-semibold text-cocoa-950 transition-colors hover:bg-gold-400"
+      >
         {t('shop.cart.checkout')}
-      </Button>
-      <p id="checkout-note" className="text-center text-xs text-cocoa-600">
-        {t('shop.cart.checkoutSoon')}
-      </p>
+      </Link>
       <SyncNote />
     </div>
   );
