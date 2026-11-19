@@ -2,11 +2,25 @@
  * LangLayout - wraps every page with the Navbar and Footer and keeps the
  * language in sync with the URL prefix (/en/... or /es/...).
  */
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Navigate, Outlet, useParams } from 'react-router-dom';
 import { SUPPORTED_LANGUAGES, useLanguage } from '../../i18n/LanguageContext';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import AuthModal from '../auth/AuthModal';
+import CartDrawer from '../cart/CartDrawer';
+
+function PageLoading({ label }) {
+  return (
+    <div role="status" className="flex min-h-[40vh] items-center justify-center">
+      <span
+        aria-hidden="true"
+        className="h-8 w-8 animate-spin rounded-full border-2 border-cocoa-300 border-t-cocoa-900"
+      />
+      <span className="sr-only">{label}</span>
+    </div>
+  );
+}
 
 export default function LangLayout() {
   const { lang } = useParams();
@@ -35,9 +49,16 @@ export default function LangLayout() {
       </a>
       <Navbar />
       <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
-        <Outlet />
+        {/* Phase 4: pages are code-split; this shows while one downloads */}
+        <Suspense fallback={<PageLoading label={t('common.loading')} />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
+      {/* Sign-in dialog, opened from anywhere with useAuth().openAuthModal() */}
+      <AuthModal />
+      {/* Slide-out cart, opened with useCart().openCart() (Student 3) */}
+      <CartDrawer />
     </div>
   );
 }

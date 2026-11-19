@@ -49,3 +49,7 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Decorative cacao rings keep the contact hero lightweight and responsive. */
+.contact-orbit { position:absolute; width:520px; height:520px; border:1px solid #573923; border-radius:50%; right:-120px; top:-90px; box-shadow:0 0 0 65px #2a1b1140, 0 0 0 66px #57392360, 0 0 0 140px #2a1b1120, 0 0 0 141px #57392340; pointer-events:none; }
+.contact-experience input[type="checkbox"]:focus-visible { outline:3px solid #573923; outline-offset:3px; }

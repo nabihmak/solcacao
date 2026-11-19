@@ -7,11 +7,22 @@
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
     "switchLanguage": "View in English",
-    "skip": "Saltar al contenido principal"
+    "skip": "Saltar al contenido principal",
+    "openSearch": "Abrir búsqueda",
+    "closeSearch": "Cerrar búsqueda",
+    "searchPlaceholder": "Buscar chocolates...",
+    "submitSearch": "Buscar",
+    "signIn": "Iniciar sesión",
+    "account": "Mi cuenta",
+    "mainNavigation": "Navegación principal",
+    "mobileNavigation": "Navegación móvil",
+    "navigationLinks": "Enlaces de navegación"
   },
   "footer": {
     "tagline": "Cacao orgánico de origen único, elaborado a mano.",
-    "rights": "Todos los derechos reservados."
+    "rights": "Todos los derechos reservados.",
+    "navigationLabel": "Enlaces del pie de página",
+    "quickLinks": "Enlaces rápidos"
   },
   "pages": {
     "home": {
@@ -32,7 +43,555 @@
       "back": "Volver al inicio"
     }
   },
+  "shop": {
+    "catalog": {
+      "intro": "Tabletas de origen único, colecciones de trufas y ediciones de temporada. Filtra por el lugar donde crece el cacao y por qué tan oscuro lo prefieres.",
+      "searchLabel": "Buscar en el catálogo",
+      "searchPlaceholder": "Nombre, origen o sabor",
+      "clearSearch": "Borrar búsqueda",
+      "results": "{count} chocolates",
+      "resultsOne": "1 chocolate",
+      "resultsFor": "para “{q}”",
+      "sortLabel": "Ordenar por",
+      "sort": {
+        "featured": "Destacados",
+        "price_asc": "Precio: de menor a mayor",
+        "price_desc": "Precio: de mayor a menor",
+        "pct_desc": "Más oscuros primero",
+        "pct_asc": "Más suaves primero",
+        "newest": "Novedades"
+      },
+      "filters": "Filtros",
+      "closeFilters": "Cerrar filtros",
+      "clearAll": "Quitar todos los filtros",
+      "showResults": "Ver resultados",
+      "origin": "Origen",
+      "category": "Tipo",
+      "allCategories": "Todos",
+      "categories": {
+        "bar": "Tabletas",
+        "truffles": "Trufas",
+        "seasonal": "Temporada"
+      },
+      "cacao": "Porcentaje de cacao",
+      "price": "Precio",
+      "minCacao": "Porcentaje mínimo de cacao",
+      "maxCacao": "Porcentaje máximo de cacao",
+      "minPrice": "Precio mínimo",
+      "maxPrice": "Precio máximo",
+      "inStock": "Solo disponibles",
+      "activeFilters": "Filtros activos",
+      "removeFilter": "Quitar filtro: {label}",
+      "emptyTitle": "Ningún chocolate coincide con estos filtros",
+      "emptyText": "Prueba un rango de cacao más amplio, otro origen, o quita los filtros para ver todo.",
+      "errorTitle": "No se pudo cargar el catálogo.",
+      "retry": "Intentar de nuevo",
+      "pagination": "Páginas del catálogo",
+      "previous": "Página anterior",
+      "next": "Página siguiente",
+      "goToPage": "Página {page}"
+    },
+    "product": {
+      "cacao": "{pct}% cacao",
+      "organic": "Orgánico",
+      "outOfStock": "Agotado",
+      "lowStock": "Solo quedan {count}",
+      "inStock": "Disponible",
+      "addToCart": "Agregar al carrito",
+      "addNamed": "Agregar al carrito: {name}",
+      "weight": "{grams} g",
+      "origin": "Origen",
+      "region": "Región",
+      "netWeight": "Peso neto",
+      "tastingNotes": "Notas de cata",
+      "quantity": "Cantidad",
+      "decrease": "Disminuir cantidad",
+      "increase": "Aumentar cantidad",
+      "backToCatalog": "Volver al catálogo",
+      "breadcrumb": "Ruta de navegación",
+      "notFoundTitle": "Este chocolate no está en nuestro catálogo",
+      "notFoundText": "Puede haber sido una edición limitada. Revisa el catálogo para ver lo disponible ahora.",
+      "inCart": "{count} ya en tu carrito",
+      "maxReached": "Todas las unidades disponibles ya están en tu carrito."
+    },
+    "cart": {
+      "title": "Tu carrito",
+      "openOne": "Abrir carrito, 1 producto",
+      "open": "Abrir carrito, {count} productos",
+      "close": "Cerrar carrito",
+      "empty": "Tu carrito está vacío",
+      "emptyText": "Agrega una tableta o una caja de trufas del catálogo y te esperará aquí.",
+      "browse": "Ver el catálogo",
+      "subtotal": "Subtotal",
+      "shippingNote": "El envío y los impuestos se calculan al pagar.",
+      "checkout": "Pagar",
+      "remove": "Quitar {name}",
+      "each": "{price} c/u",
+      "added": "{name} se agregó a tu carrito",
+      "adjusted": "Algunas cantidades cambiaron según el stock disponible.",
+      "dismiss": "Cerrar aviso",
+      "signInToSave": "Inicia sesión para conservar este carrito en cualquier dispositivo.",
+      "signIn": "Iniciar sesión",
+      "saving": "Guardando en tu cuenta…",
+      "saved": "Guardado en tu cuenta",
+      "saveError": "No se pudo guardar en tu cuenta. El carrito se conserva en este dispositivo."
+    },
+    "checkout": {
+      "eyebrow": "Pago seguro",
+      "title": "Finalizar compra",
+      "contactTitle": "Datos de contacto",
+      "phoneHint": "Opcional: el repartidor puede llamar antes de la entrega.",
+      "emailNote": "Enviaremos las novedades a {email}.",
+      "addressTitle": "Dirección de envío",
+      "newAddress": "Enviar a una dirección nueva",
+      "default": "Predeterminada",
+      "saveAddress": "Guardar esta dirección en mi cuenta",
+      "deliveryTitle": "Entrega",
+      "methods": {
+        "standard": {
+          "title": "Entrega estándar",
+          "time": "3–5 días hábiles"
+        },
+        "express": {
+          "title": "Entrega exprés",
+          "time": "1–2 días hábiles"
+        }
+      },
+      "freeShippingHint": "Agrega {amount} más para obtener envío estándar gratis.",
+      "paymentTitle": "Pago",
+      "payOnDelivery": "Pago contra entrega",
+      "payOnDeliveryText": "Paga con tarjeta o en efectivo cuando llegue tu chocolate. No necesitas datos de tarjeta ahora.",
+      "summaryTitle": "Resumen del pedido",
+      "editCart": "Editar carrito",
+      "qtyEach": "{quantity} × {price}",
+      "shipping": "Envío",
+      "free": "Gratis",
+      "tax": "Impuesto estimado (8.25%)",
+      "total": "Total",
+      "placeOrder": "Realizar pedido · {total}",
+      "terms": "Los precios y el inventario se verifican de nuevo al realizar el pedido.",
+      "cartChanged": "Algunos productos de tu carrito cambiaron (agotados o con menos unidades). Actualizamos tu carrito: revísalo y vuelve a realizar el pedido.",
+      "priceChanged": "Un precio cambió desde que abriste el pago. El nuevo total es {total}. Haz clic en \"Realizar pedido\" para confirmar.",
+      "emptyTitle": "No hay nada que pagar"
+    },
+    "order": {
+      "thanksTitle": "¡Gracias! Tu pedido fue realizado.",
+      "thanksText": "Tu número de pedido es {reference}. Guárdalo para cualquier consulta sobre tu entrega.",
+      "title": "Pedido {reference}",
+      "placedOn": "Realizado el {date}",
+      "reference": "Número de pedido",
+      "status": "Estado",
+      "delivery": "Entrega",
+      "items": "Productos ({count})",
+      "shipTo": "Enviar a",
+      "statuses": {
+        "placed": "Realizado",
+        "shipped": "Enviado",
+        "delivered": "Entregado",
+        "cancelled": "Cancelado"
+      },
+      "continue": "Seguir comprando",
+      "viewOrders": "Ver mis pedidos",
+      "notFound": "No encontramos este pedido."
+    }
+  },
   "common": {
-    "comingSoon": "Nuestro equipo está construyendo esta sección."
+    "comingSoon": "Nuestro equipo está construyendo esta sección.",
+    "loading": "Cargando..."
+  },
+  "auth": {
+    "close": "Cerrar",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
+    "login": {
+      "title": "Bienvenido de nuevo",
+      "subtitle": "Inicia sesión en tu cuenta SolCacao.",
+      "submit": "Iniciar sesión",
+      "noAccount": "¿Eres nuevo en SolCacao?",
+      "createAccount": "Crear una cuenta"
+    },
+    "register": {
+      "title": "Crea tu cuenta",
+      "subtitle": "Elige el tipo de cuenta que mejor se adapte a ti.",
+      "retailTitle": "Cuenta personal",
+      "retailText": "Compra tabletas de origen único, colecciones de trufas y chocolates de temporada.",
+      "b2bTitle": "Cuenta corporativa",
+      "b2bText": "Para mayoristas, hoteles y eventos corporativos: moldes personalizados, empaques de lujo y marca blanca.",
+      "select": "Elegir",
+      "changeType": "Cambiar tipo de cuenta",
+      "contactSection": "Persona de contacto",
+      "companySection": "Datos de la empresa",
+      "submit": "Crear cuenta",
+      "haveAccount": "¿Ya tienes una cuenta?"
+    },
+    "fields": {
+      "name": "Nombre completo",
+      "contactName": "Nombre de contacto",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "currentPassword": "Contraseña actual",
+      "newPassword": "Nueva contraseña",
+      "companyName": "Nombre de la empresa",
+      "industry": "Sector",
+      "taxId": "Número de identificación fiscal",
+      "website": "Sitio web",
+      "preferredLanguage": "Idioma preferido",
+      "label": "Etiqueta",
+      "street": "Dirección",
+      "city": "Ciudad",
+      "state": "Estado / Provincia",
+      "postalCode": "Código postal",
+      "country": "País",
+      "isDefault": "Usar como mi dirección predeterminada"
+    },
+    "hints": {
+      "optional": "Opcional",
+      "password": "Al menos 8 caracteres, con una letra y un número.",
+      "website": "Dirección completa, p. ej. https://tuempresa.com",
+      "label": "Por ejemplo: Casa, Oficina"
+    },
+    "industries": {
+      "Wholesale": "Mayorista / Minorista",
+      "Hotel": "Hotelería",
+      "Corporate Events": "Eventos corporativos",
+      "Other": "Otro"
+    },
+    "selectIndustry": "Selecciona un sector",
+    "errors": {
+      "required": "Este campo es obligatorio.",
+      "email": "Introduce un correo electrónico válido.",
+      "passwordRules": "Usa al menos 8 caracteres, con una letra y un número.",
+      "passwordMatch": "Las contraseñas no coinciden.",
+      "minLength": "Debe tener al menos {min} caracteres.",
+      "website": "Introduce una dirección web completa que empiece por http:// o https://",
+      "invalidCredentials": "Correo electrónico o contraseña incorrectos.",
+      "emailTaken": "Ya existe una cuenta con este correo electrónico.",
+      "tooLong": "Este texto es demasiado largo.",
+      "network": "No se puede conectar con el servidor. Inténtalo de nuevo.",
+      "generic": "Algo salió mal. Inténtalo de nuevo.",
+      "checkFields": "Revisa los campos marcados.",
+      "wrongCurrentPassword": "Tu contraseña actual es incorrecta.",
+      "samePassword": "La nueva contraseña debe ser diferente de la actual."
+    },
+    "protected": {
+      "title": "Inicia sesión",
+      "text": "Debes iniciar sesión para ver esta página.",
+      "partnerTitle": "Solo para socios corporativos",
+      "partnerText": "Esta sección está disponible para cuentas corporativas (B2B)."
+    }
+  },
+  "account": {
+    "title": "Mi cuenta",
+    "greeting": "Hola, {name}",
+    "retailBadge": "Cuenta personal",
+    "b2bBadge": "Socio corporativo",
+    "signOut": "Cerrar sesión",
+    "save": "Guardar cambios",
+    "saved": "Cambios guardados.",
+    "cancel": "Cancelar",
+    "tabs": {
+      "profile": "Perfil",
+      "company": "Empresa",
+      "addresses": "Direcciones",
+      "security": "Seguridad",
+      "orders": "Pedidos"
+    },
+    "profile": {
+      "title": "Datos personales",
+      "emailNote": "Tu correo electrónico no se puede cambiar."
+    },
+    "company": {
+      "title": "Datos de la empresa"
+    },
+    "addresses": {
+      "title": "Direcciones guardadas",
+      "add": "Añadir dirección",
+      "newTitle": "Nueva dirección",
+      "editTitle": "Editar dirección",
+      "empty": "Aún no tienes direcciones guardadas.",
+      "default": "Predeterminada",
+      "makeDefault": "Usar como predeterminada",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "confirmDelete": "¿Eliminar esta dirección?",
+      "yesDelete": "Sí, eliminar",
+      "save": "Guardar dirección",
+      "added": "Dirección añadida.",
+      "updated": "Dirección actualizada.",
+      "deleted": "Dirección eliminada."
+    },
+    "security": {
+      "title": "Cambiar contraseña",
+      "submit": "Actualizar contraseña",
+      "success": "Tu contraseña ha sido cambiada."
+    },
+    "languages": {
+      "en": "English",
+      "es": "Español"
+    },
+    "orders": {
+      "title": "Mis pedidos",
+      "text": "Todos tus pedidos, del más reciente al más antiguo.",
+      "empty": "Todavía no has realizado ningún pedido.",
+      "itemCount": "{count} productos"
+    }
+  },
+  "cart": {
+    "itemsLabel": "Carrito: {count} productos"
+  },
+  "support": {
+    "contact": "Contáctanos",
+    "feedback": "Comparte tu opinión",
+    "sampler": "Crea una muestra de chocolates",
+    "about": "Acerca de SolCacao",
+    "faq": "Preguntas frecuentes",
+    "intro": "Desde tu primera degustación hasta tu próxima gran idea, siempre hay algo de qué hablar.",
+    "explore": "Explora más",
+    "demo": "Las solicitudes de contacto, opiniones y muestras se envían a SolCacao cuando envías este formulario.",
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "category": "Categoría de consulta",
+    "choose": "Selecciona una opción",
+    "support": "Atención al cliente",
+    "wholesale": "Consulta mayorista",
+    "order": "Pregunta sobre un pedido",
+    "other": "Otro",
+    "rating": "Tu experiencia (1 mínima, 5 máxima)",
+    "flavors": "Tu selección de cacao",
+    "pickThree": "Selecciona exactamente tres sabores diferentes",
+    "dark70": "Cacao oscuro al 70%",
+    "dark85": "Cacao oscuro al 85%",
+    "milk": "Chocolate con leche",
+    "orange": "Chocolate oscuro con naranja",
+    "coffee": "Chocolate oscuro con café",
+    "seaSalt": "Chocolate oscuro con sal marina",
+    "quantity": "Número de cajas (1–50)",
+    "samplerSummary": "Tu selección",
+    "none": "Ningún sabor seleccionado",
+    "boxes": "cajas",
+    "message": "Mensaje",
+    "messageHint": "10–2000 caracteres",
+    "consent": "Confirmo que la información anterior es correcta.",
+    "submit": "Enviar",
+    "reset": "Limpiar formulario",
+    "saved": "Hemos recibido tu solicitud.",
+    "storageError": "No pudimos confirmar tu envío. Inténtalo de nuevo.",
+    "fixErrors": "Corrige los campos indicados.",
+    "nameError": "Introduce un nombre de entre 1 y 80 caracteres.",
+    "emailError": "Introduce un correo electrónico válido.",
+    "categoryError": "Selecciona una categoría.",
+    "messageError": "Introduce un mensaje de entre 10 y 2000 caracteres.",
+    "consentError": "Confirma tu información.",
+    "ratingError": "Selecciona una valoración del 1 al 5.",
+    "flavorsError": "Selecciona exactamente tres sabores diferentes.",
+    "quantityError": "Introduce un número entero del 1 al 50.",
+    "whatsapp": "Abrir WhatsApp",
+    "whatsappMessage": "¡Hola SolCacao! Quisiera información sobre sus chocolates.",
+    "whatsappUnavailable": "WhatsApp estará disponible cuando el equipo configure su número comercial.",
+    "privacy": "Tus datos de contacto y tu mensaje se envían al servidor de SolCacao cuando envías el formulario.",
+    "aboutText": "SolCacao es una plataforma de chocolate artesanal para consumidores y empresas. Descubre perfiles de cacao, muestras personalizadas y servicios mayoristas. Este proyecto estudiantil demuestra actualmente la interfaz de usuario.",
+    "q1": "¿Puedo pedir una muestra aquí?",
+    "a1": "Elige tres sabores y una cantidad en el creador de muestras y envía tu solicitud. Esto envía una consulta de muestra, no una compra ni un pedido de entrega confirmado.",
+    "q2": "¿Cómo funcionan las consultas mayoristas?",
+    "a2": "Selecciona Consulta mayorista en el formulario de contacto y envía tu mensaje al equipo de SolCacao.",
+    "q3": "¿Dónde encuentro información sobre alérgenos?",
+    "a3": "Antes de comprar, solicita ingredientes y alérgenos verificados a la empresa. Los nombres de sabores de prueba no garantizan seguridad alimentaria.",
+    "received": "Hemos recibido tu solicitud.",
+    "receivedDetail": "Gracias por contactar con SolCacao. Tu solicitud se envió correctamente.",
+    "another": "Escribir otro mensaje",
+    "eyebrow": "Una conversación. Un mundo de cacao.",
+    "headline": "Todo empieza",
+    "headlineAccent": "con un hola.",
+    "crafted": "Hecho con dedicación",
+    "helpTitle": "¿Cómo podemos ayudarte?",
+    "helpText": "Explora un nuevo sabor, comparte tu opinión o cuéntanos tu próxima idea.",
+    "formTitle": "Hablemos de chocolate.",
+    "formIntro": "Cuéntanos un poco sobre ti y tu consulta.",
+    "sending": "Enviando…",
+    "requestError": "No se pudo enviar. Inténtalo de nuevo."
+  },
+  "b2b": {
+    "hero": {
+      "eyebrow": "SolCacao para empresas",
+      "text": "Chocolate a medida para mayoristas, hoteles de lujo y eventos corporativos: moldes propios, empaques diseñados para tu marca y tabletas de marca blanca elaboradas con cacao de origen único."
+    },
+    "cta": {
+      "quote": "Solicitar una cotización",
+      "register": "Crear una cuenta corporativa",
+      "signIn": "Acceso para socios",
+      "retailNote": "Has iniciado sesión con una cuenta personal. Las cotizaciones requieren una cuenta corporativa."
+    },
+    "services": {
+      "title": "Lo que creamos para ti",
+      "intro": "Cada pedido empieza con el cacao que eliges y termina en un chocolate con tu marca.",
+      "molds": {
+        "title": "Moldes corporativos personalizados",
+        "text": "Tu logotipo o mensaje en cada pieza, desde pequeños cuadrados de degustación hasta tabletas completas."
+      },
+      "packaging": {
+        "title": "Empaques de lujo personalizados",
+        "text": "Cajas de regalo, latas y envolturas con los colores de tu marca, para huéspedes, clientes o equipos."
+      },
+      "whiteLabel": {
+        "title": "Marca blanca",
+        "text": "Tabletas de origen único elaboradas por SolCacao y vendidas con tu propia marca y tu historia en la envoltura."
+      }
+    },
+    "audience": {
+      "title": "Con quién trabajamos",
+      "wholesale": {
+        "title": "Mayoristas",
+        "text": "Tiendas y distribuidores con SolCacao o con su propia marca."
+      },
+      "hotels": {
+        "title": "Hoteles de lujo",
+        "text": "Chocolates de cortesía, regalos de bienvenida y tabletas para el minibar."
+      },
+      "events": {
+        "title": "Eventos corporativos",
+        "text": "Detalles con tu marca para congresos, lanzamientos y fiestas."
+      }
+    },
+    "how": {
+      "title": "Cómo funciona una cotización",
+      "profile": "Elige el origen del cacao, su intensidad y el estilo de chocolate.",
+      "files": "Sube el vector de tu logotipo o la ficha técnica para diseñar el molde.",
+      "packaging": "Elige el empaque, la cantidad y la fecha en que lo necesitas.",
+      "review": "Revisa los datos y envía. Te responderemos con una cotización.",
+      "ready": "¿Listo para crear chocolate con tu marca?"
+    },
+    "quote": {
+      "title": "Solicitar una cotización",
+      "intro": "Cuatro pasos breves. Prepararemos una cotización de fabricación para {company}.",
+      "back": "Volver a servicios mayoristas",
+      "history": "Tus solicitudes de cotización",
+      "units": "unidades"
+    },
+    "status": {
+      "submitted": "Enviada",
+      "in_review": "En revisión",
+      "quoted": "Cotizada",
+      "declined": "Rechazada"
+    },
+    "wizard": {
+      "progressLabel": "Progreso de la solicitud",
+      "stepOf": "Paso {step} de {total}",
+      "completed": "completado",
+      "steps": {
+        "profile": "Perfil de cacao",
+        "files": "Archivos de marca",
+        "packaging": "Empaque",
+        "review": "Revisión"
+      },
+      "titles": {
+        "profile": "Elige tu perfil de cacao",
+        "files": "Sube el vector de tu marca o la ficha técnica",
+        "packaging": "Diseña tu empaque mayorista",
+        "review": "Revisa y envía tu solicitud"
+      },
+      "intros": {
+        "profile": "Elige el origen y la intensidad que mejor representan a tu marca.",
+        "files": "Usamos este archivo para diseñar tu molde y tu empaque.",
+        "packaging": "Cuéntanos cómo empacar el chocolate y cuánto necesitas.",
+        "review": "Revisa todo. Todavía puedes volver y cambiar cualquier paso."
+      },
+      "back": "Atrás",
+      "next": "Siguiente",
+      "submit": "Enviar solicitud"
+    },
+    "fields": {
+      "origin": "Origen del cacao",
+      "chooseOrigin": "Elige un origen",
+      "percentage": "Porcentaje de cacao",
+      "style": "Estilo de chocolate",
+      "file": "Vector de marca o ficha técnica",
+      "removeFile": "Quitar {name}",
+      "packaging": "Tipo de empaque",
+      "quantity": "Cantidad (unidades)",
+      "deliveryDate": "Fecha de entrega deseada",
+      "packagingNotes": "Notas sobre el empaque",
+      "notes": "¿Algo más que debamos saber?"
+    },
+    "hints": {
+      "percentage": "Un número entero de {min} a {max}.",
+      "file": "{types} · hasta {mb} MB",
+      "quantity": "Pedido mínimo: {min} unidades.",
+      "packagingNotes": "Por ejemplo: colores de marca, cinta, texto de la tarjeta.",
+      "notes": "Por ejemplo: fecha del evento, alérgenos o un rango de presupuesto."
+    },
+    "styles": {
+      "dark": "Oscuro",
+      "milk": "Con leche",
+      "white": "Blanco",
+      "creamy": "Cremoso",
+      "velvet": "Aterciopelado",
+      "mint": "Menta",
+      "custom": "Receta propia"
+    },
+    "packaging": {
+      "giftBox": {
+        "title": "Caja de regalo de lujo",
+        "text": "Caja rígida con tu logotipo, para clientes y huéspedes."
+      },
+      "whiteLabel": {
+        "title": "Envoltura de marca blanca",
+        "text": "Envoltura de tableta impresa con tu marca."
+      },
+      "tin": {
+        "title": "Lata con tu marca",
+        "text": "Lata metálica reutilizable para regalos corporativos."
+      },
+      "eco": {
+        "title": "Caja ecológica kraft",
+        "text": "Cartón kraft reciclable con impresión a una tinta."
+      }
+    },
+    "review": {
+      "company": "Empresa",
+      "flexible": "Flexible",
+      "edit": "Editar {step}"
+    },
+    "done": {
+      "title": "Tu solicitud de cotización fue enviada",
+      "text": "Gracias. Nuestro equipo B2B revisará la solicitud {reference} y te responderá con una cotización.",
+      "reference": "Referencia",
+      "demoNote": "Nuestro equipo B2B tiene tu solicitud y tu archivo de marca. Puedes seguirla en \"Tus solicitudes de cotización\" más abajo.",
+      "another": "Crear otra solicitud"
+    },
+    "errors": {
+      "origin": "Elige un origen de cacao.",
+      "percentage": "Introduce un número entero de 35 a 100.",
+      "style": "Elige un estilo de chocolate.",
+      "fileRequired": "Sube el vector de tu marca o la ficha técnica.",
+      "fileType": "Usa un archivo PDF, SVG, AI, EPS o PNG.",
+      "fileSize": "El archivo debe pesar {mb} MB o menos.",
+      "packaging": "Elige un tipo de empaque.",
+      "quantity": "Introduce un número entero de al menos {min} unidades.",
+      "date": "Elige una fecha posterior a hoy o deja el campo vacío.",
+      "tooLong": "Este texto es demasiado largo.",
+      "checkFields": "Revisa los campos marcados.",
+      "partnerOnly": "Inicia sesión con una cuenta corporativa para enviar una solicitud."
+    }
+  },
+  "homeSections": {
+    "sampler": {
+      "eyebrow": "Arma el tuyo",
+      "title": "Crea tu caja de degustación",
+      "text": "¿No sabes por dónde empezar? Elige tres sabores que te encanten y los empacamos en tu propia caja de degustación. También es un gran regalo.",
+      "step1": "Elige tres de nuestros seis sabores",
+      "step2": "Indica cuántas cajas necesitas",
+      "step3": "Confirmamos tu selección por correo",
+      "cta": "Armar mi caja",
+      "flavorsTitle": "Seis sabores para elegir",
+      "note": "Cada caja incluye tres chocolates diferentes."
+    },
+    "seasonal": {
+      "eyebrow": "Ediciones limitadas",
+      "title": "Selección de temporada",
+      "viewAll": "Ver todos los chocolates de temporada",
+      "loading": "Cargando chocolates de temporada…"
+    }
   }
 }
