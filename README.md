@@ -5,6 +5,9 @@ chocolate shopping and B2B wholesale services.
 
 > CSE 5335: Web Data Management · Fall Semester Group Project
 
+**Live site:** https://main.d1cgrx30ltoljc.amplifyapp.com/en ·
+**API:** https://d2d63ollco1mk8.cloudfront.net/api/health
+
 ## Team
 
 | Student | Name             | GitHub              | Area                                                |
@@ -223,10 +226,10 @@ street, city, state, postalCode, country }`, `shippingMethod`, `paymentMethod`, 
 backend/
 ├── server.js           Express app: middleware, routes, B2B quote API, error handler
 ├── config/mongoose.js  Shared Mongoose connection
-├── models/             User, CorporatePartner, Address, Product, Inventory, Cart
+├── models/             User, CorporatePartner, Address, Product, Inventory, Cart, Order
 ├── middleware/auth.js  protect (JWT check) and requireB2B
 ├── db/                 userStore (user/address queries), seed (demo accounts)
-├── routes/             auth, users, student2 (i18n), student3 (catalog/cart), student5 (forms) + tests
+├── routes/             auth, users, student2 (i18n), student3 (catalog/cart), orders (checkout), student5 (forms) + tests
 ├── scripts/            seedStudent3 (products and stock)
 └── utils/validation.js Server-side input checks
 client/src/
@@ -236,6 +239,7 @@ client/src/
 ├── pages/              One file per page
 ├── services/           apiClient (shared fetch + token) and one service file per area
 └── utils/              Validation and helpers
+deploy/aws/             Elastic Beanstalk settings, Amplify rewrite rule, zip build scripts
 ```
 
 ## Security
@@ -253,11 +257,55 @@ Pages were checked against **WCAG 2.2 level AA** with axe-core, Lighthouse and k
 (labels on every field, visible focus, skip link, focus kept inside dialogs, no sideways scrolling
 at 320 px).
 
+## Performance (Phase 4)
+
+| Change | Where | Result |
+| ------ | ----- | ------ |
+| Pages load on demand (`React.lazy` + `Suspense`); the home page stays in the main bundle | `client/src/App.jsx`, `LangLayout.jsx` | Main JavaScript file 378 KB → 274 KB (117 KB → 90 KB gzipped) |
+| Hero images: first slide `fetchpriority="high"`, other slides `loading="lazy"`, `decoding="async"` | `client/src/pages/HomePage.jsx` | Only the visible slide is downloaded on first load |
+| Images re-encoded as WebP / smaller WebP | `client/public/B2B/images/` | 496 KB → 316 KB |
+| gzip on every API response (`compression`) | `backend/server.js` | Catalog JSON 13.2 KB → 4.1 KB |
+| Count and filter counts run in parallel; catalog limits (origins, cacao %, price range) cached for 5 minutes; lean queries on indexed fields | `backend/routes/student3.js` | Fewer database round trips per catalog request |
+| `Cache-Control: public, max-age=60` on the public catalog, 1 hour on `/assets` | `backend/routes/student3.js`, `student2.js` | Repeat visits reuse the response |
+
 ## Deployment
 
-Build the front end with `npm run build` in `client/` and serve `client/dist/`. Run the server
-with `npm start` in `backend/` and set `VITE_API_BASE_URL` to the server's address before
-building. Live URL: _to be added once deployed._
+The site runs on AWS:
+
+| Part | AWS service | Address |
+| ---- | ----------- | ------- |
+| React site (`client/dist`) | Amplify Hosting (manual deploy) | https://main.d1cgrx30ltoljc.amplifyapp.com |
+| HTTPS in front of the API | CloudFront (caching disabled, all HTTP methods, all viewer headers except Host) | https://d2d63ollco1mk8.cloudfront.net |
+| Express API | Elastic Beanstalk, Node.js 22 on Amazon Linux 2023, single t3.micro instance | (behind CloudFront) |
+| Database | MongoDB Atlas | – |
+| B2B brand files | S3 | – |
+
+### Redeploy the API
+
+```bash
+bash deploy/aws/build-beanstalk-zip.sh     # -> deploy/aws/out/solcacao-api-beanstalk.zip
+```
+
+In the Elastic Beanstalk console: **Upload and deploy** → choose the zip → **Deploy**. The zip has
+the API, the translation files, the product seed data and `client/public`; it never contains
+`.env`. Secrets are set once under **Configuration → Environment properties**: `MONGO_CONNECTION_STRING`,
+`JWT_SECRET`, `BUCKET_NAME`, `BUCKET_REGION`, `ACCESS_KEY`, `SECRET_ACCESS_KEY` and the `SMTP_*`
+values. `deploy/aws/beanstalk/` sets `PORT=8080` and lets nginx accept uploads up to 20 MB.
+
+### Redeploy the website
+
+```bash
+bash deploy/aws/build-amplify-zip.sh https://d2d63ollco1mk8.cloudfront.net   # -> deploy/aws/out/solcacao-website.zip
+```
+
+In Amplify: the app → **main** → **Deploy updates** → drag in the zip. Keep the rewrite rule in
+`deploy/aws/amplify-rewrites.json` (**Hosting → Rewrites and redirects**) so pages such as
+`/en/catalog` load on refresh.
+
+### Check it
+
+Open https://d2d63ollco1mk8.cloudfront.net/api/health (answers `{"status":"ok"}`), then the live
+site: catalog filters, sign in, add to cart, checkout, and the Spanish pages.
 
 ## Git workflow
 

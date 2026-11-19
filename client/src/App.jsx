@@ -3,21 +3,26 @@
  * Every page lives under a language prefix: /en/... or /es/...
  * Example: /en/catalog and /es/catalog show the same page in two languages.
  */
+import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import LangLayout from './components/layout/LangLayout';
 import HomePage from './pages/HomePage';
-import CatalogPage from './pages/CatalogPage';
-import ProductDetailPage from './pages/ProductDetailPage';
-import B2BPage from './pages/B2BPage';
-import B2BQuotePage from './pages/B2BQuotePage';
-import ContactPage from './pages/ContactPage';
-import SupportPage from './pages/SupportPage';
-import InfoPage from './pages/InfoPage';
-import NotFoundPage from './pages/NotFoundPage';
-import RegisterPage from './pages/RegisterPage';
-import AccountPage from './pages/AccountPage';
-import CheckoutPage from './pages/CheckoutPage';
-import OrderConfirmationPage from './pages/OrderConfirmationPage';
+
+// Phase 4: every page except the home page is loaded on demand (code splitting),
+// so the first visit downloads only the shell and the home page. The loading
+// boundary is in LangLayout, so the navbar and footer stay on screen.
+const CatalogPage = lazy(() => import('./pages/CatalogPage'));
+const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
+const B2BPage = lazy(() => import('./pages/B2BPage'));
+const B2BQuotePage = lazy(() => import('./pages/B2BQuotePage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const SupportPage = lazy(() => import('./pages/SupportPage'));
+const InfoPage = lazy(() => import('./pages/InfoPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const AccountPage = lazy(() => import('./pages/AccountPage'));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
+const OrderConfirmationPage = lazy(() => import('./pages/OrderConfirmationPage'));
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 export default function App() {

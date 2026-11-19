@@ -1,4 +1,5 @@
 import express from 'express'
+import compression from 'compression'
 import cors from 'cors'
 import multer from 'multer'
 import dotenv from 'dotenv';
@@ -44,6 +45,8 @@ const s3 = new S3Client({
 });
 
 app.use(cors())
+// Phase 4: gzip every JSON and text response (the catalog JSON shrinks by about 80%)
+app.use(compression())
 app.use(requestLogger()); // debug log: method, path, status and time of every request
 app.use(express.json({ limit: '32kb' }));
 app.use('/api/student5', makeStudent5Router({
@@ -157,7 +160,7 @@ app.use((err, req, res, next) => {
   return res.status(500).json({ message: 'Something went wrong. Please try again.' });
 });
 
-const port = 3001
+const port = process.env.PORT || 3001; // cloud hosts (Elastic Beanstalk) set PORT
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`)
 })
