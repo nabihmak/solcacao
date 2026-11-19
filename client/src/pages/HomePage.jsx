@@ -12,7 +12,7 @@ const slides = [
     description:
       'Explore our latest collections and find something you will love.',
     image:
-      "/B2B/images/2-ingredient-candy-bars.jpg",
+      "/B2B/images/2-ingredient-candy-bars.webp",
     buttonText: 'Explore Collection',
   },
   {
@@ -71,6 +71,13 @@ export default function HomePage() {
             src={slide.image}
             alt={slide.title}
             className="hero-image"
+            width="1600"
+            height="900"
+            decoding="async"
+            /* Phase 4: the first slide is the largest paint, so it loads first;
+               the other slides are only fetched when they are shown */
+            loading={currentSlide === 0 ? 'eager' : 'lazy'}
+            fetchPriority={currentSlide === 0 ? 'high' : 'auto'}
           />
 
           <div className="hero-overlay" />

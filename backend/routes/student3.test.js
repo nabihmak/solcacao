@@ -16,6 +16,8 @@ import {
   validateCartItems,
   reconcileItems,
   makeStudent3Router,
+  catalogBounds,
+  clearCatalogBounds,
 } from './student3.js';
 import { Product, normalizeText } from '../models/Product.js';
 import { Inventory } from '../models/Inventory.js';
@@ -164,6 +166,7 @@ describe('API with a test database', { skip: !TEST_DB && 'set STUDENT3_TEST_MONG
       req.user = { _id: id };
       return next();
     };
+    clearCatalogBounds(); // start without the 5-minute catalog-limits cache
     app.use('/api', makeStudent3Router({ requireAuth: fakeProtect }));
     server = app.listen(0);
     base = `http://127.0.0.1:${server.address().port}/api`;
@@ -193,6 +196,23 @@ describe('API with a test database', { skip: !TEST_DB && 'set STUDENT3_TEST_MONG
     assert.deepEqual(body.products.map((p) => p._id), ['p-1']);
     body = await (await fetch(`${base}/products?search=cafe`)).json();
     assert.deepEqual(body.products.map((p) => p._id), ['p-1']);
+  });
+
+  test('GET /products can be cached by the browser for a minute (Phase 4)', async () => {
+    const res = await fetch(`${base}/products`);
+    assert.equal(res.headers.get('cache-control'), 'public, max-age=60');
+  });
+
+  test('catalog limits are read once and reused for 5 minutes (Phase 4)', async () => {
+    clearCatalogBounds();
+    const first = await catalogBounds(1_000);
+    await Product.create(product('p-9', { origin: 'Ghana' }));
+    const cached = await catalogBounds(1_000 + 60_000); // 1 minute later: same answer
+    assert.deepEqual([...cached.origins].sort(), [...first.origins].sort());
+    const fresh = await catalogBounds(1_000 + 6 * 60_000); // 6 minutes later: read again
+    assert.ok(fresh.origins.includes('Ghana'));
+    await Product.deleteOne({ _id: 'p-9' });
+    clearCatalogBounds();
   });
 
   test('GET /products returns 400 for invalid query', async () => {

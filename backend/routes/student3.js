@@ -163,11 +163,13 @@ async function countBy(field, filter) {
   return Object.fromEntries(rows.map((row) => [row._id, row.count]));
 }
 
-// Filter options for the sidebar: every origin/category with how many products match
-async function buildFacets(filters, stockIds) {
-  const [originCounts, categoryCounts, origins, ranges] = await Promise.all([
-    countBy('origin', buildProductFilter(filters, { skip: 'origin', stockIds })),
-    countBy('category', buildProductFilter(filters, { skip: 'category', stockIds })),
+// Phase 4: the list of origins and the cacao/price limits only change when the catalog
+// is re-seeded, so they are kept in memory for 5 minutes instead of read on every request
+const BOUNDS_TTL_MS = 5 * 60 * 1000;
+let boundsCache = null;
+export async function catalogBounds(now = Date.now()) {
+  if (boundsCache && now - boundsCache.at < BOUNDS_TTL_MS) return boundsCache.value;
+  const [origins, ranges] = await Promise.all([
     Product.distinct('origin'),
     Product.aggregate([
       {
@@ -181,9 +183,23 @@ async function buildFacets(filters, stockIds) {
       },
     ]),
   ]);
+  boundsCache = { at: now, value: { origins, ranges } };
+  return boundsCache.value;
+}
+export function clearCatalogBounds() {
+  boundsCache = null;
+}
+
+// Filter options for the sidebar: every origin/category with how many products match
+async function buildFacets(filters, stockIds) {
+  const [originCounts, categoryCounts, origins, ranges] = await Promise.all([
+    countBy('origin', buildProductFilter(filters, { skip: 'origin', stockIds })),
+    countBy('category', buildProductFilter(filters, { skip: 'category', stockIds })),
+    catalogBounds(),
+  ]).then(([originCount, categoryCount, bounds]) => [originCount, categoryCount, bounds.origins, bounds.ranges]);
   const range = ranges[0] || { minPct: 0, maxPct: 100, minPrice: 0, maxPrice: 0 };
   return {
-    origins: origins.sort().map((value) => ({ value, count: originCounts[value] || 0 })),
+    origins: [...origins].sort().map((value) => ({ value, count: originCounts[value] || 0 })),
     categories: CATEGORIES.map((value) => ({ value, count: categoryCounts[value] || 0 })),
     cacaoPct: { min: range.minPct, max: range.maxPct },
     price: { min: Math.floor(range.minPrice), max: Math.ceil(range.maxPrice) },
@@ -286,19 +302,19 @@ export function makeStudent3Router({ requireAuth = protect } = {}) {
     const stockIds = filters.inStock ? await inStockIds() : null;
     const filter = buildProductFilter(filters, { stockIds });
 
-    const total = await Product.countDocuments(filter);
+    // Phase 4: the count and the filter counts don't depend on the page, so they run together
+    const [total, facets] = await Promise.all([Product.countDocuments(filter), buildFacets(filters, stockIds)]);
     const totalPages = Math.max(1, Math.ceil(total / filters.limit));
     const page = Math.min(filters.page, totalPages); // a page past the end shows the last page
 
-    const [docs, facets] = await Promise.all([
-      Product.find(filter)
-        .sort(MONGO_SORTS[filters.sort])
-        .skip((page - 1) * filters.limit)
-        .limit(filters.limit)
-        .lean(),
-      buildFacets(filters, stockIds),
-    ]);
+    const docs = await Product.find(filter)
+      .sort(MONGO_SORTS[filters.sort])
+      .skip((page - 1) * filters.limit)
+      .limit(filters.limit)
+      .lean();
 
+    // The catalog is public and changes rarely: browsers may reuse it for a minute
+    res.set('Cache-Control', 'public, max-age=60');
     res.status(200).json({
       products: await withInventory(docs),
       pagination: { page, limit: filters.limit, total, totalPages },
@@ -311,6 +327,7 @@ export function makeStudent3Router({ requireAuth = protect } = {}) {
     const product = await Product.findOne({ slug }).lean();
     if (!product) throw apiError(404, 'Product not found');
     const [withStock] = await withInventory([product]);
+    res.set('Cache-Control', 'public, max-age=60');
     res.status(200).json({ product: withStock });
   });
 
